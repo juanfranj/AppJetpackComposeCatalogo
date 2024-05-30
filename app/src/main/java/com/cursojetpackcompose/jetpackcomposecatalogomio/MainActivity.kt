@@ -13,6 +13,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.cursojetpackcompose.jetpackcomposecatalogomio.components.componentes.DetailButtonMultiSelect
+import com.cursojetpackcompose.jetpackcomposecatalogomio.components.componentes.DetailButtonMultiSelectViewModel
 import com.cursojetpackcompose.jetpackcomposecatalogomio.components.componentes.MultiSelectableButton
 import com.cursojetpackcompose.jetpackcomposecatalogomio.components.ui.ComponentesViewModel
 import com.cursojetpackcompose.jetpackcomposecatalogomio.instagram.login.ui.LoginScreen
@@ -35,6 +37,7 @@ class MainActivity : ComponentActivity() {
 
     private val loginViewModel: LoginViewModel by viewModels()
     private val componentsViewModel: ComponentesViewModel by viewModels()
+    private val detailButtonMultiSelectViewModel: DetailButtonMultiSelectViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,8 +58,17 @@ class MainActivity : ComponentActivity() {
                         composable(route = Routes.Pantalla2.route) { Screen2(navigationController) }
                         composable(route = Routes.Pantalla3.route) { Screen3(navigationController) }
                         composable(route = Routes.Home.route) { Home(navigationController) }
-                        composable(route = Routes.BotonMultiseleccion.route) { MultiSelectableButton(navigationController = navigationController)}
-
+                        //pantalla bonton multiseleccion
+                        composable(route = Routes.BotonMultiseleccion.route) {
+                            MultiSelectableButton(
+                                navigationController = navigationController,
+                                detailButtonMultiSelectViewModel = detailButtonMultiSelectViewModel
+                            )
+                        }
+                        //Pantalla Detalles del boton multiseleccion pasandole los datos por viewModel
+                        composable(route = Routes.DetailBotonMultiseleccion.route) {
+                            DetailButtonMultiSelect(navigationController, detailButtonMultiSelectViewModel)
+                        }
                         composable(route = Routes.Instagram.route) {
                             LoginScreen(
                                 navigationController,

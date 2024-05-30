@@ -14,7 +14,9 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -23,12 +25,14 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import com.cursojetpackcompose.jetpackcomposecatalogomio.model.Routes
 
 
 @Composable
-fun MultiSelectableButton(navigationController: NavHostController) {
-    val options = listOf("Option 1", "Option 2", "Option 3", "Option 4", "Option 5")
-    val selectedOptions = remember { mutableStateListOf<String>() }
+fun MultiSelectableButton(navigationController: NavHostController, detailButtonMultiSelectViewModel: DetailButtonMultiSelectViewModel) {
+    val options = listOf("Tabla 2", "Tabla 3", "Tabla 4", "Tabla 5", "Tabla 6", "Tabla 7", "Tabla 8", "Tabla 9", "Tabla 10")
+    //val selectedOptions = remember { mutableStateListOf<String>() }
+    val selectedOptions by remember { mutableStateOf(detailButtonMultiSelectViewModel.selectedItems) }
 
     Column(
         modifier = Modifier.fillMaxSize(),
@@ -41,19 +45,35 @@ fun MultiSelectableButton(navigationController: NavHostController) {
                 isSelected = selectedOptions.contains(option),
                 onSelectedChange = { isSelected ->
                     if (isSelected) {
-                        selectedOptions.add(option)
+                        //selectedOptions.add(option)
+                        detailButtonMultiSelectViewModel.setSelectedItems(option)
                     } else {
-                        selectedOptions.remove(option)
+                        //selectedOptions.remove(option)
+                        detailButtonMultiSelectViewModel.removeSelectedItems(option)
                     }
                 }
             )
             Spacer(modifier = Modifier.height(8.dp))
         }
         Button(
-            onClick = { navigationController.popBackStack() },
+            onClick = {
+                //detailButtonMultiSelectViewModel.setItems(selectedOptions.toString())
+                navigationController.navigate(Routes.DetailBotonMultiseleccion.route) },
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(8.dp)
+                .padding(4.dp)
+                .height(50.dp),
+            shape = MaterialTheme.shapes.medium
+        ) {
+            Text(text = "Comenzar", fontSize = MaterialTheme.typography.titleLarge.fontSize)
+        }
+        Button(
+            onClick = {
+                detailButtonMultiSelectViewModel.clearSelectedItems()
+                navigationController.popBackStack() },
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(4.dp)
                 .height(50.dp),
             shape = MaterialTheme.shapes.medium
         ) {
@@ -77,7 +97,7 @@ fun MultiSelectableButton(
         ),
         shape = CircleShape,
         modifier = Modifier
-            .padding(8.dp)
+            .padding(4.dp)
             .height(50.dp)
             .fillMaxWidth()
     ) {

@@ -19,6 +19,8 @@ sealed class Routes(val route: String) {
         fun createRoute(name: String) = "pantalla6?name=$name"
     }
     object BotonMultiseleccion: Routes("botonMultiseleccion")
+    //Voy a pasar a la pantalla datos desde el viewModel
+    object DetailBotonMultiseleccion: Routes("detailBotonMultiseleccion")
 
 
 
