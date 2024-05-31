@@ -30,7 +30,7 @@ import com.cursojetpackcompose.jetpackcomposecatalogomio.model.Routes
 
 @Composable
 fun MultiSelectableButton(navigationController: NavHostController, detailButtonMultiSelectViewModel: DetailButtonMultiSelectViewModel) {
-    val options = listOf("Tabla 2", "Tabla 3", "Tabla 4", "Tabla 5", "Tabla 6", "Tabla 7", "Tabla 8", "Tabla 9", "Tabla 10")
+    val options = listOf("Tabla del 2", "Tabla del 3", "Tabla del 4", "Tabla del 5", "Tabla del 6", "Tabla del 7", "Tabla del 8", "Tabla del 9", "Tabla del 10")
     //val selectedOptions = remember { mutableStateListOf<String>() }
     val selectedOptions by remember { mutableStateOf(detailButtonMultiSelectViewModel.selectedItems) }
 

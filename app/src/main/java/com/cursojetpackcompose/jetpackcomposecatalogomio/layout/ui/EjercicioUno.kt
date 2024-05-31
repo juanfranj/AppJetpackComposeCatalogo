@@ -1,5 +1,7 @@
 package com.cursojetpackcompose.jetpackcomposecatalogomio.layout.ui
 
+import android.content.Intent
+import android.net.Uri
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -12,20 +14,27 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import com.cursojetpackcompose.jetpackcomposecatalogomio.ui.theme.JetpackComposeCatalogoMioTheme
+import com.cursojetpackcompose.jetpackcomposecatalogomio.R
 
 @Composable
 fun EjercicioUno(navigationController: NavHostController) {
-    Column(Modifier.fillMaxSize().padding(16.dp)) {
+
+    Column(
+        Modifier
+            .fillMaxSize()
+            .padding(16.dp)
+    ) {
         Box(
             modifier = Modifier
                 .fillMaxWidth()
@@ -42,6 +51,9 @@ fun EjercicioUno(navigationController: NavHostController) {
                     .size(30.dp)
                     .align(Alignment.TopEnd)
                     .clickable { navigationController.popBackStack() })
+//            OpenGitHubRepoButton()
+            GitHubIcon()
+
 
         }
         Row(
@@ -80,6 +92,57 @@ fun EjercicioUno(navigationController: NavHostController) {
         }
     }
 }
+
+@Composable
+fun OpenGitHubRepoButton() {
+    val context = LocalContext.current
+    val githubRepoUrl = "https://github.com/tu-usuario/tu-repositorio"
+
+    Box(modifier = Modifier.fillMaxSize()) {
+        FloatingActionButton(
+            onClick = {
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(githubRepoUrl))
+                context.startActivity(intent)
+            },
+            containerColor = Color.White,
+            contentColor = Color.Black,
+            modifier = Modifier
+                .align(Alignment.TopStart)
+                .padding(16.dp)
+        ) {
+            Icon(
+                painter = painterResource(id = R.drawable.ic_github), // Usa el ID de tu ícono SVG convertido
+                contentDescription = "Open GitHub Repo"
+
+            )
+
+        }
+    }
+}
+
+@Composable
+fun GitHubIcon() {
+    val context = LocalContext.current
+    val githubRepoUrl =
+        "https://github.com/juanfranj/AppJetpackComposeCatalogo/blob/main/app/src/main/java/com/cursojetpackcompose/jetpackcomposecatalogomio/layout/ui/EjercicioUno.kt"
+
+    Box(modifier = Modifier
+        .padding(16.dp)
+        .fillMaxSize()) {
+        Icon(
+            painter = painterResource(id = R.drawable.ic_github), // Usa el ID de tu ícono SVG convertido
+            contentDescription = "Open GitHub Repo",
+            tint = Color.Unspecified, // Mantén el color original del ícono
+            modifier = Modifier
+                .align(Alignment.TopStart)
+                .clickable {
+                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(githubRepoUrl))
+                    context.startActivity(intent)
+                }
+        )
+    }
+}
+
 
 //@Preview(showBackground = true, name = "EjercicioUno")
 //@Composable
