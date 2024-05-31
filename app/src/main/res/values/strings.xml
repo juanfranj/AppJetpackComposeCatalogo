@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">JetpackComposeCatalogoMio</string>
+<!--<string name="app_name">JetpackComposeCatalogoMio</string>&ndash;&gt;-->
+    <string name="app_name">JetPack_Catalogo</string>
+
 </resources>
