@@ -76,6 +76,13 @@ fun Home(navigationController: NavHostController) {
         ) {
             Text(text = "Boton Multiseleccionable", fontSize = MaterialTheme.typography.titleLarge.fontSize)
         }
+        Button(
+            onClick = { navigationController.navigate(Routes.FlowScreen.route) },
+            modifier = Modifier.width(300.dp),
+            shape = MaterialTheme.shapes.medium
+        ) {
+            Text(text = "FlowScreen", fontSize = MaterialTheme.typography.titleLarge.fontSize)
+        }
     }
 }
 

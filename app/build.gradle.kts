@@ -90,6 +90,11 @@ dependencies {
     implementation("com.google.dagger:hilt-android:2.44")
     kapt("com.google.dagger:hilt-android-compiler:2.44")
 
+    //To use Flow
+    //implementation("androix.lifecycle:lifecycle-viewmodel-ktx:2.6.2") implementamos el viewmodel pero usamos el del compose
+    //implementation("androix.activity:activity-ktx:1.7.2")
+
+
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")

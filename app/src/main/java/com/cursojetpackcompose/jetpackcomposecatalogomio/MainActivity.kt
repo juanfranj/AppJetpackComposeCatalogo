@@ -28,6 +28,8 @@ import com.cursojetpackcompose.jetpackcomposecatalogomio.navigation.Screen4
 import com.cursojetpackcompose.jetpackcomposecatalogomio.navigation.Screen5
 import com.cursojetpackcompose.jetpackcomposecatalogomio.navigation.Screen6
 import com.cursojetpackcompose.jetpackcomposecatalogomio.components.ui.Components
+import com.cursojetpackcompose.jetpackcomposecatalogomio.flow.ui.FlowScreen
+import com.cursojetpackcompose.jetpackcomposecatalogomio.flow.ui.FlowViewModel
 import com.cursojetpackcompose.jetpackcomposecatalogomio.home.Home
 import com.cursojetpackcompose.jetpackcomposecatalogomio.ui.theme.JetpackComposeCatalogoMioTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -38,10 +40,12 @@ class MainActivity : ComponentActivity() {
     private val loginViewModel: LoginViewModel by viewModels()
     private val componentsViewModel: ComponentesViewModel by viewModels()
     private val detailButtonMultiSelectViewModel: DetailButtonMultiSelectViewModel by viewModels()
+    private val flowViewModel: FlowViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
+//            flowViewModel.example()
             JetpackComposeCatalogoMioTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(
@@ -113,6 +117,8 @@ class MainActivity : ComponentActivity() {
                                 name = backStackEntry.arguments?.getString("name").orEmpty()
                             )
                         }
+                        //Pantalla Flow
+                        composable(route = Routes.FlowScreen.route) { FlowScreen(navigationController, flowViewModel)  }
                     }
                 }
             }
