@@ -5,6 +5,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -28,6 +29,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.cursojetpackcompose.jetpackcomposecatalogomio.layout.ui.GitHubIcon
+import com.cursojetpackcompose.jetpackcomposecatalogomio.model.Routes
 
 
 @Composable
@@ -35,32 +37,25 @@ fun FlowScreen(
     navigationController: NavHostController,
     flowViewModel: FlowViewModel,
 ) {
-    val githubRepoUrl =
-        "https://github.com/juanfranj/AppJetpackComposeCatalogo/blob/main/app/src/main/java/com/cursojetpackcompose/jetpackcomposecatalogomio/layout/ui/EjercicioUno.kt"
+    val githubRepoUrlScreen =
+        "https://github.com/juanfranj/AppJetpackComposeCatalogo/blob/5404926bd2633986f3c9fe71f655f2962e8ba497/app/src/main/java/com/cursojetpackcompose/jetpackcomposecatalogomio/flow/ui/FlowScreen.kt"
+
+    val githubRepoUrlViewModel =
+        "https://github.com/juanfranj/AppJetpackComposeCatalogo/blob/5404926bd2633986f3c9fe71f655f2962e8ba497/app/src/main/java/com/cursojetpackcompose/jetpackcomposecatalogomio/flow/ui/FlowViewModel.kt"
+
+
+    Row(Modifier.fillMaxWidth().padding(8.dp), horizontalArrangement = Arrangement.Start) {
+        GitHubIcon(githubRepoUrl = githubRepoUrlScreen)
+        GitHubIcon(githubRepoUrl = githubRepoUrlViewModel)
+    }
 
     Column(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .weight(1f)
-                .background(Color.Cyan),
-            contentAlignment = Alignment.Center
-        ) {
-            Text(text = "Ejemplo 1")
-            Icon(
-                imageVector = Icons.Filled.ArrowBack,
-                contentDescription = "Arrow Back",
-                modifier = Modifier
-                    .padding(16.dp)
-                    .size(30.dp)
-                    .align(Alignment.TopEnd)
-                    .clickable { navigationController.popBackStack() })
-//            OpenGitHubRepoButton()
-            GitHubIcon(githubRepoUrl = githubRepoUrl) }
+
+
 
         CounterScreen(flowViewModel = flowViewModel)
         Spacer(modifier = Modifier.height(200.dp))
@@ -74,7 +69,7 @@ fun FlowScreen(
         Button(onClick = { flowViewModel.stopCounter() }, modifier = Modifier.fillMaxWidth().padding(8.dp)) {
             Text(text = "Detener Contador", fontSize = MaterialTheme.typography.titleLarge.fontSize)
         }
-        Button(onClick = { navigationController.popBackStack()}, modifier = Modifier.fillMaxWidth().padding(8.dp)) {
+        Button(onClick = { navigationController.navigate(Routes.Home.route)}, modifier = Modifier.fillMaxWidth().padding(8.dp)) {
             Text(text = "Volver", fontSize = MaterialTheme.typography.titleLarge.fontSize)
         }
     }

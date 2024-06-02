@@ -55,7 +55,7 @@ fun MultiSelectableButton(
     val githubRepoUrl =
         "https://github.com/juanfranj/AppJetpackComposeCatalogo/blob/main/app/src/main/java/com/cursojetpackcompose/jetpackcomposecatalogomio/components/componentes/ButtonMultiSelect.kt"
     Box(modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState())) {
-        Row() {
+        Row(Modifier.padding(bottom = 16.dp)) {
             GitHubIcon(githubRepoUrl = githubRepoUrl)
         }
         Column(

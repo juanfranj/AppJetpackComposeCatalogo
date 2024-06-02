@@ -22,6 +22,7 @@ sealed class Routes(val route: String) {
     //Voy a pasar a la pantalla datos desde el viewModel
     object DetailBotonMultiseleccion: Routes("detailBotonMultiseleccion")
     object FlowScreen: Routes("flowScreen")
+    object StateFlowScreen: Routes("stateFlowScreen")
 
 
 

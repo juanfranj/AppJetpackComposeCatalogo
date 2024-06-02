@@ -83,6 +83,13 @@ fun Home(navigationController: NavHostController) {
         ) {
             Text(text = "FlowScreen", fontSize = MaterialTheme.typography.titleLarge.fontSize)
         }
+        Button(
+            onClick = { navigationController.navigate(Routes.StateFlowScreen.route) },
+            modifier = Modifier.width(300.dp),
+            shape = MaterialTheme.shapes.medium
+        ) {
+            Text(text = "StateFlowScreen", fontSize = MaterialTheme.typography.titleLarge.fontSize)
+        }
     }
 }
 

@@ -7,6 +7,9 @@ import com.cursojetpackcompose.jetpackcomposecatalogomio.flow.data.SuscribeteRep
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -23,6 +26,7 @@ class FlowViewModel @Inject constructor(
 
     private var hasStarted = false
 
+
     // Función que inicia la colección del Flow
     fun startCounterFlow() {
         if(!hasStarted){
@@ -30,9 +34,10 @@ class FlowViewModel @Inject constructor(
             viewModelScope.launch {
 
                 // Suscribirse al Flow expuesto por el repositorio
-                suscribeteRepository.counter.collect { bombitas ->
-                    // Imprimir el valor emitido por el Flow en el logcat con la etiqueta "juanfran"
-                    _counterState.value = bombitas
+                suscribeteRepository.counter
+                    .map {it.toString()}//para mapear los datos que llegan
+                    .collect { bombitas: String ->
+                    _counterState.value = bombitas.toInt()
                 }
             }
         }
@@ -40,7 +45,9 @@ class FlowViewModel @Inject constructor(
 
     }
     fun resetCounter() {
+//        stopCounter()
         _counterState.value = 0
+//        startCounter()
     }
 
     fun startCounter() {
@@ -50,6 +57,26 @@ class FlowViewModel @Inject constructor(
     fun stopCounter() {
         suscribeteRepository.stopCounter()
         hasStarted = false
+    }
+
+    fun example(){
+        viewModelScope.launch {
+            // Suscribirse al Flow expuesto por el repositorio
+            suscribeteRepository.counter
+                .map {it.toString()}//para mapear los datos que llegan
+                .onEach {save(it)}//Cada valor lo mando a la funcion save para que haga algo
+                .catch { error ->
+                    Log.i("juanfran","Error: ${error.cause}")
+                }
+                .collect { bombitas: String ->
+                    // Imprimir el valor emitido por el Flow en el logcat con la etiqueta "juanfran"
+                    Log.i("juanfran",bombitas)
+                }
+        }
+    }
+
+    private fun save(info: String) {
+
     }
 
 }

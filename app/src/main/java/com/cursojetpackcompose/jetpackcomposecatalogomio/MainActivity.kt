@@ -13,6 +13,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.cursojetpackcompose.jetpackcomposecatalogomio.StateFlow.ui.StateFlowScreen
+import com.cursojetpackcompose.jetpackcomposecatalogomio.StateFlow.ui.StateFlowViewModel
 import com.cursojetpackcompose.jetpackcomposecatalogomio.components.componentes.DetailButtonMultiSelect
 import com.cursojetpackcompose.jetpackcomposecatalogomio.components.componentes.DetailButtonMultiSelectViewModel
 import com.cursojetpackcompose.jetpackcomposecatalogomio.components.componentes.MultiSelectableButton
@@ -41,6 +43,7 @@ class MainActivity : ComponentActivity() {
     private val componentsViewModel: ComponentesViewModel by viewModels()
     private val detailButtonMultiSelectViewModel: DetailButtonMultiSelectViewModel by viewModels()
     private val flowViewModel: FlowViewModel by viewModels()
+    private val stateFlowViewModel: StateFlowViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -119,6 +122,8 @@ class MainActivity : ComponentActivity() {
                         }
                         //Pantalla Flow
                         composable(route = Routes.FlowScreen.route) { FlowScreen(navigationController, flowViewModel)  }
+                        //Pantalla StateFlow
+                        composable(route = Routes.StateFlowScreen.route) { StateFlowScreen(navigationController, stateFlowViewModel)  }
                     }
                 }
             }

@@ -32,11 +32,13 @@ fun EjercicioUno(navigationController: NavHostController) {
     val githubRepoUrl =
         "https://github.com/juanfranj/AppJetpackComposeCatalogo/blob/main/app/src/main/java/com/cursojetpackcompose/jetpackcomposecatalogomio/layout/ui/EjercicioUno.kt"
 
+
     Column(
         Modifier
-            .fillMaxSize()
+            .fillMaxWidth()
             .padding(16.dp)
     ) {
+        GitHubIcon(githubRepoUrl = githubRepoUrl)
         Box(
             modifier = Modifier
                 .fillMaxWidth()
@@ -54,7 +56,7 @@ fun EjercicioUno(navigationController: NavHostController) {
                     .align(Alignment.TopEnd)
                     .clickable { navigationController.popBackStack() })
 //            OpenGitHubRepoButton()
-            GitHubIcon(githubRepoUrl = githubRepoUrl)
+
 
 
         }
@@ -128,8 +130,8 @@ fun GitHubIcon(githubRepoUrl: String) {
 
     Box(
         modifier = Modifier
-            .padding(16.dp)
-            .fillMaxSize()
+            .padding(8.dp)
+//            .fillMaxWidth()
     ) {
         Icon(
             painter = painterResource(id = R.drawable.ic_github), // Usa el ID de tu ícono SVG convertido
