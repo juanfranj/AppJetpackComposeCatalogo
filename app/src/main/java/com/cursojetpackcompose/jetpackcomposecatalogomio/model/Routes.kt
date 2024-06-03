@@ -23,6 +23,7 @@ sealed class Routes(val route: String) {
     object DetailBotonMultiseleccion: Routes("detailBotonMultiseleccion")
     object FlowScreen: Routes("flowScreen")
     object StateFlowScreen: Routes("stateFlowScreen")
+    object Progress: Routes("progress")
 
 
 

@@ -33,6 +33,8 @@ import com.cursojetpackcompose.jetpackcomposecatalogomio.components.ui.Component
 import com.cursojetpackcompose.jetpackcomposecatalogomio.flow.ui.FlowScreen
 import com.cursojetpackcompose.jetpackcomposecatalogomio.flow.ui.FlowViewModel
 import com.cursojetpackcompose.jetpackcomposecatalogomio.home.Home
+import com.cursojetpackcompose.jetpackcomposecatalogomio.progressBar.ui.MyProgress
+import com.cursojetpackcompose.jetpackcomposecatalogomio.progressBar.ui.ProgressBarViewmodel
 import com.cursojetpackcompose.jetpackcomposecatalogomio.ui.theme.JetpackComposeCatalogoMioTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -44,6 +46,7 @@ class MainActivity : ComponentActivity() {
     private val detailButtonMultiSelectViewModel: DetailButtonMultiSelectViewModel by viewModels()
     private val flowViewModel: FlowViewModel by viewModels()
     private val stateFlowViewModel: StateFlowViewModel by viewModels()
+    private val progressViewModel: ProgressBarViewmodel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -124,6 +127,8 @@ class MainActivity : ComponentActivity() {
                         composable(route = Routes.FlowScreen.route) { FlowScreen(navigationController, flowViewModel)  }
                         //Pantalla StateFlow
                         composable(route = Routes.StateFlowScreen.route) { StateFlowScreen(navigationController, stateFlowViewModel)  }
+                        //Pantalla ProgressBar
+                        composable(route = Routes.Progress.route){ MyProgress(navigationController, progressViewModel) }
                     }
                 }
             }
