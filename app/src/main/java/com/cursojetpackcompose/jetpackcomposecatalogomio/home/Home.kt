@@ -97,6 +97,16 @@ fun Home(navigationController: NavHostController) {
         ) {
             Text(text = "ProgressBar", fontSize = MaterialTheme.typography.titleLarge.fontSize)
         }
+        Button(
+            onClick = { navigationController.navigate(Routes.Anuncios.route) },
+            modifier = Modifier.width(300.dp),
+            shape = MaterialTheme.shapes.medium
+        ) {
+            Text(
+                text = "Anuncios",
+                fontSize = MaterialTheme.typography.titleLarge.fontSize
+            )
+        }
     }
 }
 

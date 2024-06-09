@@ -93,6 +93,8 @@ dependencies {
     //To use Flow
     //implementation("androix.lifecycle:lifecycle-viewmodel-ktx:2.6.2") implementamos el viewmodel pero usamos el del compose
     //implementation("androix.activity:activity-ktx:1.7.2")
+    //To implement AdMob
+    implementation ("com.google.android.gms:play-services-ads:23.1.0")
 
 
     testImplementation("junit:junit:4.13.2")

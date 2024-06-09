@@ -1,5 +1,6 @@
 package com.cursojetpackcompose.jetpackcomposecatalogomio.instagram.login.ui
 
+import android.app.Activity
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -38,6 +39,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
@@ -293,11 +295,11 @@ fun ImageLogo(modifier: Modifier) {
 
 @Composable
 fun Header(modifier: Modifier, navigationController: NavHostController) {
-//    val activity = LocalContext.current as Activity -----> Para cerrar la app
+    val activity = LocalContext.current as Activity //-----> Para cerrar la app
     Icon(
         imageVector = Icons.Default.Close,
         contentDescription = "Cerrar",
-//        modifier = modifier.clickable { activity.finish() } Para cerrar la app
+//        modifier = modifier.clickable { activity.finish() } //Para cerrar la app
         modifier = modifier.clickable { navigationController.popBackStack() })
 }
 

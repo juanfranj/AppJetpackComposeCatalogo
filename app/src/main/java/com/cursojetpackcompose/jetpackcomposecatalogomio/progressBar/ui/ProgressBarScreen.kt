@@ -88,6 +88,24 @@ fun MyProgressAdvance(progressViewModel: ProgressBarViewmodel) {
 
 //    var progressStatus by rememberSaveable { mutableStateOf(0.5f) }
     val progress by progressViewModel.progress.collectAsState(initial = 0.0f)
+
+//    Para hacerlo directamente aqui sin viewmodel
+//    var progress by remember { mutableStateOf(0f) }
+//    val scope = rememberCoroutineScope()
+//
+//    LaunchedEffect(Unit) {
+//        scope.launch {
+//            while (progress < 1f) {
+//                progress += 0.01f
+//                delay(50)
+//                  if(progress == 1f) {
+    //                progress = 0f
+//            }
+//        }
+//    }
+
+
+
     Column(
         Modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally,

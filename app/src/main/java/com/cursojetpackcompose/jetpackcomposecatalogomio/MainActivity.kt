@@ -13,8 +13,13 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.cursojetpackcompose.jetpackcomposecatalogomio.anuncios.BannerAd.ui.MyBannerScreen
+import com.cursojetpackcompose.jetpackcomposecatalogomio.anuncios.InterstitialAd.ui.MyInterstitialAd
 import com.cursojetpackcompose.jetpackcomposecatalogomio.StateFlow.ui.StateFlowScreen
 import com.cursojetpackcompose.jetpackcomposecatalogomio.StateFlow.ui.StateFlowViewModel
+import com.cursojetpackcompose.jetpackcomposecatalogomio.anuncios.RewardedAd.ui.MyRewardedAd
+import com.cursojetpackcompose.jetpackcomposecatalogomio.anuncios.ui.AnunciosViewModel
+import com.cursojetpackcompose.jetpackcomposecatalogomio.anuncios.ui.MyAnuncios
 import com.cursojetpackcompose.jetpackcomposecatalogomio.components.componentes.DetailButtonMultiSelect
 import com.cursojetpackcompose.jetpackcomposecatalogomio.components.componentes.DetailButtonMultiSelectViewModel
 import com.cursojetpackcompose.jetpackcomposecatalogomio.components.componentes.MultiSelectableButton
@@ -47,6 +52,7 @@ class MainActivity : ComponentActivity() {
     private val flowViewModel: FlowViewModel by viewModels()
     private val stateFlowViewModel: StateFlowViewModel by viewModels()
     private val progressViewModel: ProgressBarViewmodel by viewModels()
+    private val anunciosViewModel: AnunciosViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -77,7 +83,10 @@ class MainActivity : ComponentActivity() {
                         }
                         //Pantalla Detalles del boton multiseleccion pasandole los datos por viewModel
                         composable(route = Routes.DetailBotonMultiseleccion.route) {
-                            DetailButtonMultiSelect(navigationController, detailButtonMultiSelectViewModel)
+                            DetailButtonMultiSelect(
+                                navigationController,
+                                detailButtonMultiSelectViewModel
+                            )
                         }
                         composable(route = Routes.Instagram.route) {
                             LoginScreen(
@@ -124,18 +133,53 @@ class MainActivity : ComponentActivity() {
                             )
                         }
                         //Pantalla Flow
-                        composable(route = Routes.FlowScreen.route) { FlowScreen(navigationController, flowViewModel)  }
+                        composable(route = Routes.FlowScreen.route) {
+                            FlowScreen(
+                                navigationController,
+                                flowViewModel
+                            )
+                        }
                         //Pantalla StateFlow
-                        composable(route = Routes.StateFlowScreen.route) { StateFlowScreen(navigationController, stateFlowViewModel)  }
+                        composable(route = Routes.StateFlowScreen.route) {
+                            StateFlowScreen(
+                                navigationController,
+                                stateFlowViewModel
+                            )
+                        }
                         //Pantalla ProgressBar
-                        composable(route = Routes.Progress.route){ MyProgress(navigationController, progressViewModel) }
+                        composable(route = Routes.Progress.route) {
+                            MyProgress(
+                                navigationController,
+                                progressViewModel
+                            )
+                        }
+                        //Pantalla Anuncios
+                        composable(route = Routes.Anuncios.route) {
+                            MyAnuncios(
+                                navigationController,
+                                anunciosViewModel
+                            )
+                        }
+                        //Pantalla Banner
+                        composable(route = Routes.Banner.route) {
+                            MyBannerScreen(navigationController)
+                        }
+                        //Pantalla Interstitial
+                        composable(route = Routes.Interstitial.route) {
+                            MyInterstitialAd(this@MainActivity, navigationController)
+
+                        }
+                        //Pantalla RewardedAD
+                        composable(route = Routes.Rewarded.route) {
+                            MyRewardedAd(activity =this@MainActivity , navigationController = navigationController)
+                        }
                     }
                 }
             }
         }
     }
-}
 
+}
 
 
 

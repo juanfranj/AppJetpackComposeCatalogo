@@ -24,6 +24,10 @@ sealed class Routes(val route: String) {
     object FlowScreen: Routes("flowScreen")
     object StateFlowScreen: Routes("stateFlowScreen")
     object Progress: Routes("progress")
+    object Anuncios: Routes("anuncios")
+    object Banner: Routes("banner")
+    object Interstitial: Routes("interstitial")
+    object Rewarded: Routes("rewarded")
 
 
 
