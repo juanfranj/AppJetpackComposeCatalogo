@@ -1,6 +1,5 @@
 package com.cursojetpackcompose.jetpackcomposecatalogomio.anuncios.RewardedAd.ui
 
-import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -22,20 +21,16 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.cursojetpackcompose.jetpackcomposecatalogomio.MainActivity
-import com.cursojetpackcompose.jetpackcomposecatalogomio.anuncios.InterstitialAd.ui.InterstitialTestAd
 import com.cursojetpackcompose.jetpackcomposecatalogomio.model.Routes
-import com.cursojetpackcompose.jetpackcomposecatalogomio.model.TestAds
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.LoadAdError
-import com.google.android.gms.ads.rewarded.RewardedAd
-import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback
-import com.google.android.gms.ads.rewardedinterstitial.RewardedInterstitialAd
-import com.google.android.gms.ads.rewardedinterstitial.RewardedInterstitialAdLoadCallback
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MyRewardedAd(activity: MainActivity, navigationController: NavHostController) {
+fun MyRewardedAd(
+    activity: MainActivity,
+    navigationController: NavHostController,
+    rewardedViewModel: RewardedViewModel
+) {
     Scaffold(
         topBar = {
             TopAppBar(
@@ -64,7 +59,7 @@ fun MyRewardedAd(activity: MainActivity, navigationController: NavHostController
             Spacer(modifier = Modifier.size(16.dp))
             Button(
                 onClick = {
-                    rewardedTestAd(activity)
+                    rewardedViewModel.rewardedTestAd(activity)
                 },
                 modifier = Modifier
                     .fillMaxWidth()
@@ -79,7 +74,7 @@ fun MyRewardedAd(activity: MainActivity, navigationController: NavHostController
             Spacer(modifier = Modifier.size(16.dp))
             Button(
                 onClick = {
-                    rewardedInterstitialAd(activity)
+                    rewardedViewModel.rewardedInterstitialAd(activity)
                 },
                 modifier = Modifier
                     .fillMaxWidth()
@@ -111,43 +106,43 @@ fun MyRewardedAd(activity: MainActivity, navigationController: NavHostController
 }
 
 
-const val ADMOB = "AdMob"
-
-fun rewardedInterstitialAd(activity: MainActivity) {
-    RewardedInterstitialAd.load(
-        activity,
-        TestAds.REWARDED_INTERSTITIAL_AD,
-        AdRequest.Builder().build(),
-        object : RewardedInterstitialAdLoadCallback() {
-            override fun onAdFailedToLoad(p0: LoadAdError) {
-                super.onAdFailedToLoad(p0)
-                Log.i(ADMOB, "Rewarded Interstitial onAdFailedToLoad: ${p0.message}")
-            }
-
-            override fun onAdLoaded(p0: RewardedInterstitialAd) {
-                super.onAdLoaded(p0)
-                p0.show(activity) {}
-            }
-        }
-
-    )
-}
-
-fun rewardedTestAd(activity: MainActivity) {
-    RewardedAd.load(
-        activity,
-        TestAds.REWARDED_AD,
-        AdRequest.Builder().build(),
-        object : RewardedAdLoadCallback() {
-            override fun onAdFailedToLoad(p0: LoadAdError) {
-                super.onAdFailedToLoad(p0)
-                Log.i(ADMOB, "Rewarded Ad onAdFailedToLoad: ${p0.message}")
-            }
-
-            override fun onAdLoaded(p0: RewardedAd) {
-                super.onAdLoaded(p0)
-                p0.show(activity) {}
-            }
-        }
-    )
-}
+//const val ADMOB = "AdMob"
+//
+//fun rewardedInterstitialAd(activity: MainActivity) {
+//    RewardedInterstitialAd.load(
+//        activity,
+//        TestAds.REWARDED_INTERSTITIAL_AD,
+//        AdRequest.Builder().build(),
+//        object : RewardedInterstitialAdLoadCallback() {
+//            override fun onAdFailedToLoad(p0: LoadAdError) {
+//                super.onAdFailedToLoad(p0)
+//                Log.i(ADMOB, "Rewarded Interstitial onAdFailedToLoad: ${p0.message}")
+//            }
+//
+//            override fun onAdLoaded(p0: RewardedInterstitialAd) {
+//                super.onAdLoaded(p0)
+//                p0.show(activity) {}
+//            }
+//        }
+//
+//    )
+//}
+//
+//fun rewardedTestAd(activity: MainActivity) {
+//    RewardedAd.load(
+//        activity,
+//        TestAds.REWARDED_AD,
+//        AdRequest.Builder().build(),
+//        object : RewardedAdLoadCallback() {
+//            override fun onAdFailedToLoad(p0: LoadAdError) {
+//                super.onAdFailedToLoad(p0)
+//                Log.i(ADMOB, "Rewarded Ad onAdFailedToLoad: ${p0.message}")
+//            }
+//
+//            override fun onAdLoaded(p0: RewardedAd) {
+//                super.onAdLoaded(p0)
+//                p0.show(activity) {}
+//            }
+//        }
+//    )
+//}

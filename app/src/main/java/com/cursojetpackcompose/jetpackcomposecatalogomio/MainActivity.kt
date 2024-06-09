@@ -17,7 +17,9 @@ import com.cursojetpackcompose.jetpackcomposecatalogomio.anuncios.BannerAd.ui.My
 import com.cursojetpackcompose.jetpackcomposecatalogomio.anuncios.InterstitialAd.ui.MyInterstitialAd
 import com.cursojetpackcompose.jetpackcomposecatalogomio.StateFlow.ui.StateFlowScreen
 import com.cursojetpackcompose.jetpackcomposecatalogomio.StateFlow.ui.StateFlowViewModel
+import com.cursojetpackcompose.jetpackcomposecatalogomio.anuncios.InterstitialAd.ui.InterstitialViewModel
 import com.cursojetpackcompose.jetpackcomposecatalogomio.anuncios.RewardedAd.ui.MyRewardedAd
+import com.cursojetpackcompose.jetpackcomposecatalogomio.anuncios.RewardedAd.ui.RewardedViewModel
 import com.cursojetpackcompose.jetpackcomposecatalogomio.anuncios.ui.AnunciosViewModel
 import com.cursojetpackcompose.jetpackcomposecatalogomio.anuncios.ui.MyAnuncios
 import com.cursojetpackcompose.jetpackcomposecatalogomio.components.componentes.DetailButtonMultiSelect
@@ -53,6 +55,8 @@ class MainActivity : ComponentActivity() {
     private val stateFlowViewModel: StateFlowViewModel by viewModels()
     private val progressViewModel: ProgressBarViewmodel by viewModels()
     private val anunciosViewModel: AnunciosViewModel by viewModels()
+    private val InterstitialViewModel: InterstitialViewModel by viewModels()
+    private val RewardedViewModel: RewardedViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -166,12 +170,12 @@ class MainActivity : ComponentActivity() {
                         }
                         //Pantalla Interstitial
                         composable(route = Routes.Interstitial.route) {
-                            MyInterstitialAd(this@MainActivity, navigationController)
+                            MyInterstitialAd(this@MainActivity, navigationController, InterstitialViewModel)
 
                         }
                         //Pantalla RewardedAD
                         composable(route = Routes.Rewarded.route) {
-                            MyRewardedAd(activity =this@MainActivity , navigationController = navigationController)
+                            MyRewardedAd(activity =this@MainActivity , navigationController = navigationController, RewardedViewModel)
                         }
                     }
                 }

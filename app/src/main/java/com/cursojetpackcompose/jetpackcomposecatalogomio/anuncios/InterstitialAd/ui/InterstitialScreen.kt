@@ -1,6 +1,5 @@
 package com.cursojetpackcompose.jetpackcomposecatalogomio.anuncios.InterstitialAd.ui
 
-import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -23,16 +22,15 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.cursojetpackcompose.jetpackcomposecatalogomio.MainActivity
 import com.cursojetpackcompose.jetpackcomposecatalogomio.model.Routes
-import com.cursojetpackcompose.jetpackcomposecatalogomio.model.TestAds
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.LoadAdError
-import com.google.android.gms.ads.interstitial.InterstitialAd
-import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MyInterstitialAd(activity: MainActivity, navigationController: NavHostController) {
+fun MyInterstitialAd(
+    activity: MainActivity,
+    navigationController: NavHostController,
+    interstitialViewModel: InterstitialViewModel
+) {
     Scaffold(
         topBar = {
             TopAppBar(
@@ -61,7 +59,7 @@ fun MyInterstitialAd(activity: MainActivity, navigationController: NavHostContro
             Spacer(modifier = Modifier.size(16.dp))
             Button(
                 onClick = {
-                    InterstitialTestAd(activity)
+                    interstitialViewModel.InterstitialTestAd(activity)
                 },
                 modifier = Modifier
                     .fillMaxWidth()
@@ -93,28 +91,28 @@ fun MyInterstitialAd(activity: MainActivity, navigationController: NavHostContro
 }
 
 
-const val ADMOB = "AdMob"
+//const val ADMOB = "AdMob"
 
 
-fun InterstitialTestAd(activity: MainActivity) {
-    InterstitialAd.load(
-        activity,
-//        "ca-app-pub-3940256099942544/1033173712",
-        TestAds.INTERSTITIAL_AD,
-        AdRequest.Builder().build(),
-        object : InterstitialAdLoadCallback() {
-            override fun onAdFailedToLoad(p0: LoadAdError) {
-                super.onAdFailedToLoad(p0)
-                Log.i(ADMOB, "onAdFailedToLoad: ${p0.message}")
-            }
-
-            override fun onAdLoaded(p0: InterstitialAd) {
-                super.onAdLoaded(p0)
-                Log.i(ADMOB, "onAdLoaded: ")
-                p0.show(activity)
-            }
-        }
-
-    )
-
-}
+//fun InterstitialTestAd(activity: MainActivity) {
+//    InterstitialAd.load(
+//        activity,
+////        "ca-app-pub-3940256099942544/1033173712",
+//        TestAds.INTERSTITIAL_AD,
+//        AdRequest.Builder().build(),
+//        object : InterstitialAdLoadCallback() {
+//            override fun onAdFailedToLoad(p0: LoadAdError) {
+//                super.onAdFailedToLoad(p0)
+//                Log.i(ADMOB, "onAdFailedToLoad: ${p0.message}")
+//            }
+//
+//            override fun onAdLoaded(p0: InterstitialAd) {
+//                super.onAdLoaded(p0)
+//                Log.i(ADMOB, "onAdLoaded: ")
+//                p0.show(activity)
+//            }
+//        }
+//
+//    )
+//
+//}
