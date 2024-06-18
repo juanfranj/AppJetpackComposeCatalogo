@@ -37,9 +37,17 @@ import com.cursojetpackcompose.jetpackcomposecatalogomio.navigation.Screen4
 import com.cursojetpackcompose.jetpackcomposecatalogomio.navigation.Screen5
 import com.cursojetpackcompose.jetpackcomposecatalogomio.navigation.Screen6
 import com.cursojetpackcompose.jetpackcomposecatalogomio.components.ui.Components
+import com.cursojetpackcompose.jetpackcomposecatalogomio.firebase.analytics.ui.FireBaseAnalyticsScreen
+import com.cursojetpackcompose.jetpackcomposecatalogomio.firebase.analytics.ui.FireBaseAnalyticsViewModel
+import com.cursojetpackcompose.jetpackcomposecatalogomio.firebase.ui.FireBaseScreen
+import com.cursojetpackcompose.jetpackcomposecatalogomio.firebase.ui.FireBaseViewModel
 import com.cursojetpackcompose.jetpackcomposecatalogomio.flow.ui.FlowScreen
 import com.cursojetpackcompose.jetpackcomposecatalogomio.flow.ui.FlowViewModel
 import com.cursojetpackcompose.jetpackcomposecatalogomio.home.Home
+import com.cursojetpackcompose.jetpackcomposecatalogomio.movimientoBoton.DragDropScreen
+import com.cursojetpackcompose.jetpackcomposecatalogomio.movimientoBoton.DragDropViewModel
+import com.cursojetpackcompose.jetpackcomposecatalogomio.movimientoPrueba.ui.MovimientoPrueba
+import com.cursojetpackcompose.jetpackcomposecatalogomio.movimientoPrueba.ui.MovimientoPruebaViewModel
 import com.cursojetpackcompose.jetpackcomposecatalogomio.progressBar.ui.MyProgress
 import com.cursojetpackcompose.jetpackcomposecatalogomio.progressBar.ui.ProgressBarViewmodel
 import com.cursojetpackcompose.jetpackcomposecatalogomio.ui.theme.JetpackComposeCatalogoMioTheme
@@ -57,6 +65,10 @@ class MainActivity : ComponentActivity() {
     private val anunciosViewModel: AnunciosViewModel by viewModels()
     private val InterstitialViewModel: InterstitialViewModel by viewModels()
     private val RewardedViewModel: RewardedViewModel by viewModels()
+    private val firebaseViewModel: FireBaseViewModel by viewModels()
+    private val firebaseAnalyticsViewModel: FireBaseAnalyticsViewModel by viewModels()
+    private val dragDropViewModel: DragDropViewModel by viewModels()
+    private val movimientoPruebaViewModel: MovimientoPruebaViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -70,6 +82,7 @@ class MainActivity : ComponentActivity() {
                 ) {
 //                    Home()
                     val navigationController = rememberNavController()
+
                     NavHost(
                         navController = navigationController,
                         startDestination = Routes.Home.route
@@ -176,6 +189,26 @@ class MainActivity : ComponentActivity() {
                         //Pantalla RewardedAD
                         composable(route = Routes.Rewarded.route) {
                             MyRewardedAd(activity =this@MainActivity , navigationController = navigationController, RewardedViewModel)
+                        }
+                        //Pantalla FireBase
+                        composable(route = Routes.FireBase.route) {
+                            FireBaseScreen(navigationController, firebaseViewModel)
+                        }
+                        //Pantalla FireBaseAnalytics
+                        composable(route = Routes.FireBaseAnalytics.route) {
+                            FireBaseAnalyticsScreen(navigationController, firebaseAnalyticsViewModel)
+                        }
+                        //Pantalla movimiento Boton
+                        composable(route = Routes.MovimientoBoton.route) {
+                            DragDropScreen(
+                                dragDropViewModel,
+                                navigationController,
+                            )
+                        }
+                        //Pantalla movimiento de Prueba
+                        composable(route = Routes.MovimientoPrueba.route) {
+
+                            MovimientoPrueba(navigationController, movimientoPruebaViewModel)
                         }
                     }
                 }

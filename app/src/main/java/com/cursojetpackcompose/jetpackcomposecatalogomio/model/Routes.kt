@@ -28,6 +28,10 @@ sealed class Routes(val route: String) {
     object Banner: Routes("banner")
     object Interstitial: Routes("interstitial")
     object Rewarded: Routes("rewarded")
+    object FireBase: Routes("fireBase")
+    object FireBaseAnalytics: Routes("fireBaseAnalytics")
+    object MovimientoBoton: Routes("movimientoBoton")
+    object MovimientoPrueba: Routes("movimientoPrueba")
 
 
 

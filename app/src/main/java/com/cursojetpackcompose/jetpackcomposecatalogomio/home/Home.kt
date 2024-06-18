@@ -107,6 +107,26 @@ fun Home(navigationController: NavHostController) {
                 fontSize = MaterialTheme.typography.titleLarge.fontSize
             )
         }
+        Button(
+            onClick = { navigationController.navigate(Routes.FireBase.route) },
+            modifier = Modifier.width(300.dp),
+            shape = MaterialTheme.shapes.medium
+        ) {
+            Text(
+                text = "FireBase",
+                fontSize = MaterialTheme.typography.titleLarge.fontSize
+            )
+        }
+        Button(
+            onClick = { navigationController.navigate(Routes.MovimientoPrueba.route) },
+            modifier = Modifier.width(300.dp),
+            shape = MaterialTheme.shapes.medium
+        ) {
+            Text(
+                text = "Movimiento Boton",
+                fontSize = MaterialTheme.typography.titleLarge.fontSize
+            )
+        }
     }
 }
 

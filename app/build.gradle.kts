@@ -6,6 +6,9 @@ plugins {
     id("org.jetbrains.kotlin.android")
     kotlin("kapt")
     id("com.google.dagger.hilt.android")
+    //Incluir Firebase
+    id("com.google.gms.google-services")
+    id("com.google.firebase.crashlytics")
 }
 
 android {
@@ -98,6 +101,13 @@ dependencies {
     //implementation("androix.activity:activity-ktx:1.7.2")
     //To implement AdMob
     implementation ("com.google.android.gms:play-services-ads:23.1.0")
+
+    //To use Firebase
+    implementation(platform("com.google.firebase:firebase-bom:32.3.1"))
+    //To use Firebase Analytics
+    implementation("com.google.firebase:firebase-analytics-ktx")
+    //To use Firebase Crashlytics
+    implementation("com.google.firebase:firebase-crashlytics-ktx")
 
 
     testImplementation("junit:junit:4.13.2")
