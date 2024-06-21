@@ -19,6 +19,9 @@ class MovimientoPruebaViewModel @Inject constructor() : ViewModel() {
     private val _text2 = MutableLiveData<String>("Texto 1")
     val text2: LiveData<String> = _text2
 
+    private val _text3 = MutableLiveData<String>("Texto 1")
+    val text3: LiveData<String> = _text3
+
     private val _boxPosition = MutableLiveData<Pair<Float, Float>>(Pair(0f, 0f))
     val boxPosition: LiveData<Pair<Float, Float>> = _boxPosition
 
@@ -38,6 +41,7 @@ class MovimientoPruebaViewModel @Inject constructor() : ViewModel() {
     }
     fun updateButtonPosition(x: Float, y: Float) {
         _buttonPosition.value = Pair(x, y)
+        _text3.value = "(${x.roundToInt()}, ${y.roundToInt()})"
 
 //        updateDistance()
     }
