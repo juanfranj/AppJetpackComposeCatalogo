@@ -1,6 +1,7 @@
 package com.cursojetpackcompose.jetpackcomposecatalogomio.movimientoPrueba.ui
 
 import androidx.compose.animation.core.Animatable
+import androidx.compose.animation.core.VectorConverter
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.detectDragGestures
@@ -67,7 +68,7 @@ fun MovimientoPrueba(
     val distance by movimientoPruebaViewModel.distance.observeAsState(0f)
     var showDialog by remember { mutableStateOf(false) }
 
-    val closeDistanceThreshold = 150f // Define the threshold for proximity
+    val closeDistanceThreshold = 200f // Define the threshold for proximity
 
     LaunchedEffect(distance) {
         if (distance < closeDistanceThreshold) {
@@ -97,6 +98,11 @@ fun MovimientoPrueba(
                 .fillMaxSize()
                 .padding(innerPadding)
         ) {
+            val animatedOffsetX = remember { Animatable(0f) }
+            val animatedOffsetY = remember { Animatable(0f) }
+            val coroutineScope = rememberCoroutineScope()
+            val animatedOffset = remember { Animatable(Offset.Zero, Offset.VectorConverter) }
+
             Column(
                 modifier = Modifier
                     .fillMaxSize()
@@ -208,43 +214,57 @@ fun MovimientoPrueba(
                     contentAlignment = Alignment.Center,
                     modifier = Modifier
                         .offset {
-
                             IntOffset(
-                                buttonPosition.first.roundToInt(),
-                                buttonPosition.second.roundToInt()
+                                animatedOffset.value.x.roundToInt(),
+                                animatedOffset.value.y.roundToInt()
                             )
                         }
                         .pointerInput(Unit) {
                             detectDragGestures(
                                 onDragEnd = {
-                                    if (distance <= closeDistanceThreshold) {
-                                        val offsetX = (boxPosition.first - buttonPositionInParent.first)
-                                        val offsetY = (boxPosition.second - buttonPositionInParent.second)
-                                        movimientoPruebaViewModel.updateButtonPosition(buttonPosition.first + offsetX, buttonPosition.second + offsetY)
-//                                        localButtonPosition += Offset(offsetX, offsetY)
-//
-//                                        movimientoPruebaViewModel.updateButtonPosition(
-//                                            boxPosition.first,
-//                                            boxPosition.second
-//                                        )
-//
-                                    } else {
-                                        movimientoPruebaViewModel.resetButton()
+                                    coroutineScope.launch {
+                                        if (distance <= closeDistanceThreshold) {
+                                            val offsetX = boxPosition.first - buttonPositionInParent.first
+                                            val offsetY = boxPosition.second - buttonPositionInParent.second
+
+                                            // Iniciar la animación hacia la posición de ajuste
+                                            animatedOffset.animateTo(
+                                                Offset(animatedOffset.value.x + offsetX, animatedOffset.value.y + offsetY),
+                                                animationSpec = tween(durationMillis = 1000) // Aumenta la duración para hacerlo más lento
+                                            )
+
+                                            movimientoPruebaViewModel.updateButtonPosition(
+                                                buttonPosition.first + offsetX,
+                                                buttonPosition.second + offsetY
+                                            )
+                                        } else {
+                                            movimientoPruebaViewModel.resetButton()
+                                            animatedOffset.animateTo(
+                                                Offset.Zero,
+                                                animationSpec = tween(durationMillis = 1000) // Aumenta la duración para hacerlo más lento
+                                            )
+                                        }
                                     }
                                 },
+
                                 onDrag = { change, dragAmount ->
                                     change.consume()
-                                    val newX = buttonPosition.first + dragAmount.x
-                                    val newY = buttonPosition.second + dragAmount.y
-                                    movimientoPruebaViewModel.updateButtonPosition(newX, newY)
+                                    coroutineScope.launch {
+                                        animatedOffset.snapTo(
+                                            Offset(
+                                                animatedOffset.value.x + dragAmount.x,
+                                                animatedOffset.value.y + dragAmount.y
+                                            )
+                                        )
+                                    }
                                 }
                             )
                         }
+
                         .size(75.dp)
                         .background(Color.Blue)
                         .onGloballyPositioned { coordinates ->
                             val position = coordinates.positionInWindow()
-                            val localPosition = coordinates.positionInParent()
                             movimientoPruebaViewModel.updateButtonPositionInParent(
                                 position.x,
                                 position.y
