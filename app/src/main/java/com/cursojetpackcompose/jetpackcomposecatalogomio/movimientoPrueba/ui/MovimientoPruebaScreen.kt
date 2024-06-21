@@ -230,7 +230,7 @@ fun MovimientoPrueba(
                                             // Iniciar la animación hacia la posición de ajuste
                                             animatedOffset.animateTo(
                                                 Offset(animatedOffset.value.x + offsetX, animatedOffset.value.y + offsetY),
-                                                animationSpec = tween(durationMillis = 1000) // Aumenta la duración para hacerlo más lento
+                                                animationSpec = tween(durationMillis = 200) // Aumenta la duración para hacerlo más lento
                                             )
 
                                             movimientoPruebaViewModel.updateButtonPosition(
@@ -241,7 +241,7 @@ fun MovimientoPrueba(
                                             movimientoPruebaViewModel.resetButton()
                                             animatedOffset.animateTo(
                                                 Offset.Zero,
-                                                animationSpec = tween(durationMillis = 1000) // Aumenta la duración para hacerlo más lento
+                                                animationSpec = tween(durationMillis = 650) // Aumenta la duración para hacerlo más lento
                                             )
                                         }
                                     }
