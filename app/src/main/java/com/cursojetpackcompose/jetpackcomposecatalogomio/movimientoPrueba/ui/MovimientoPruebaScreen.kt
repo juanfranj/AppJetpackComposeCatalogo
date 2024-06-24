@@ -68,7 +68,7 @@ fun MovimientoPrueba(
     val distance by movimientoPruebaViewModel.distance.observeAsState(0f)
     var showDialog by remember { mutableStateOf(false) }
 
-    val closeDistanceThreshold = 200f // Define the threshold for proximity
+    val closeDistanceThreshold = 300f // Define the threshold for proximity
 
     LaunchedEffect(distance) {
         if (distance < closeDistanceThreshold) {
@@ -98,12 +98,11 @@ fun MovimientoPrueba(
                 .fillMaxSize()
                 .padding(innerPadding)
         ) {
-            val animatedOffsetX = remember { Animatable(0f) }
-            val animatedOffsetY = remember { Animatable(0f) }
             val coroutineScope = rememberCoroutineScope()
             val animatedOffset = remember { Animatable(Offset.Zero, Offset.VectorConverter) }
 
             Column(
+
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(innerPadding),

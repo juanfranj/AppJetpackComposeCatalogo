@@ -50,6 +50,9 @@ import com.cursojetpackcompose.jetpackcomposecatalogomio.movimientoPrueba.ui.Mov
 import com.cursojetpackcompose.jetpackcomposecatalogomio.movimientoPrueba.ui.MovimientoPruebaViewModel
 import com.cursojetpackcompose.jetpackcomposecatalogomio.progressBar.ui.MyProgress
 import com.cursojetpackcompose.jetpackcomposecatalogomio.progressBar.ui.ProgressBarViewmodel
+import com.cursojetpackcompose.jetpackcomposecatalogomio.pruebas.dialogoTablasMultiplicar.ui.DialogoTablasScreen
+import com.cursojetpackcompose.jetpackcomposecatalogomio.pruebas.dialogoTablasMultiplicar.ui.DialogoTablasViewModel
+import com.cursojetpackcompose.jetpackcomposecatalogomio.pruebas.ui.PantallasPruebasScreen
 import com.cursojetpackcompose.jetpackcomposecatalogomio.ui.theme.JetpackComposeCatalogoMioTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -69,6 +72,7 @@ class MainActivity : ComponentActivity() {
     private val firebaseAnalyticsViewModel: FireBaseAnalyticsViewModel by viewModels()
     private val dragDropViewModel: DragDropViewModel by viewModels()
     private val movimientoPruebaViewModel: MovimientoPruebaViewModel by viewModels()
+    private val dialogoTablasViewModel: DialogoTablasViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -209,6 +213,14 @@ class MainActivity : ComponentActivity() {
                         composable(route = Routes.MovimientoPrueba.route) {
 
                             MovimientoPrueba(navigationController, movimientoPruebaViewModel)
+                        }
+                        //Pantalla Pruebas
+                        composable(route = Routes.PantallaPrueba.route) {
+                            PantallasPruebasScreen(navigationController = navigationController)
+                        }
+                        //Pantalla DiaologoAppMultiplicar
+                        composable(route = Routes.DialogoAppMultiplicar.route) {
+                            DialogoTablasScreen(navigationController, dialogoTablasViewModel)
                         }
                     }
                 }

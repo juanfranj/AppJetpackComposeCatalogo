@@ -32,7 +32,7 @@ sealed class Routes(val route: String) {
     object FireBaseAnalytics: Routes("fireBaseAnalytics")
     object MovimientoBoton: Routes("movimientoBoton")
     object MovimientoPrueba: Routes("movimientoPrueba")
-
-
+    object PantallaPrueba: Routes("pantallaPrueba")
+    object DialogoAppMultiplicar: Routes("diaoloAppMultiplicar")
 
 }

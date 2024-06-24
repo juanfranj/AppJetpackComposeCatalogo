@@ -2,4 +2,16 @@
 <!--<string name="app_name">JetpackComposeCatalogoMio</string>&ndash;&gt;-->
     <string name="app_name">JetPack_Catalogo</string>
 
+    <string name="boton_dialogo">Volver</string>
+
+    //RepasarTablasSeleccion
+    <string name="repasarSeleccion_name">Repasar Tablas </string>
+    <string name="selecionar_respuesta">Selecciona la Respuesta Correcta</string>
+    <string name="terminarSeleccion_boton">Finalizar</string>
+    <string name="repasarSeleccion_dialogo_terminar">Enhorabuena Has Finalizado</string>
+    <string name="repasarSeleccion_dialogo_aciertos">Has Acertado </string>
+    <string name="repasarSeleccion_dialogo_errores">Has Fallado </string>
+    <string name="repasarSeleccion_aciertos">¡¡ HAS ACERTADO !! </string>
+    <string name="repasarSeleccion_errores">¡¡ HAS FALLADO !! </string>
+
 </resources>

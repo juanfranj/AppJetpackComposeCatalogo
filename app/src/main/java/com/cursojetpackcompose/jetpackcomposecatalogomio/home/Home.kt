@@ -127,6 +127,16 @@ fun Home(navigationController: NavHostController) {
                 fontSize = MaterialTheme.typography.titleLarge.fontSize
             )
         }
+        Button(
+            onClick = { navigationController.navigate(Routes.PantallaPrueba.route) },
+            modifier = Modifier.width(300.dp),
+            shape = MaterialTheme.shapes.medium
+        ) {
+            Text(
+                text = "Pantallas De Pruebas",
+                fontSize = MaterialTheme.typography.titleLarge.fontSize
+            )
+        }
     }
 }
 
