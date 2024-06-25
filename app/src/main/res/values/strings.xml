@@ -27,12 +27,12 @@
     <string name="Boton_repetir">Repetir</string>
     <string name="Boton_menu">Menu</string>
     <string name="Boton_valorar">Valorar App</string>
-
+    <string name="Boton_rechazar">Quizás en otro momento</string>
     //Valorar App
     <string name="Valorar_titulo">Tu Opinión es Muy Importante</string>
     <string name="Valorar_positivo">Tu opinión es muy importante para nosotros, deseamos que te hayas divertido y disfrutado, si crees que merecemos una buena valoración no lo dudes, Gracias!!</string>
     <string name="Valorar_negativo">Tu opinión es muy importante para nosotros, si no te ha convencido nuestro juego, no lo dudes. Pulsa en el texto y envianos tu opinión. Gracias!!</string>
-
+    <string name="Valorar_motivacion">Sigue así, cada día estas más cerca de tu objetivo</string>
 
 
 </resources>

@@ -3,11 +3,14 @@ package com.cursojetpackcompose.jetpackcomposecatalogomio.pruebas.valorarApp.ui
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.EmojiEvents
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
@@ -27,7 +30,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.cursojetpackcompose.jetpackcomposecatalogomio.R
 import com.cursojetpackcompose.jetpackcomposecatalogomio.model.Routes
-import com.cursojetpackcompose.jetpackcomposecatalogomio.ui.theme.BotonAzul
+import com.cursojetpackcompose.jetpackcomposecatalogomio.ui.theme.BotonVerde
 import com.cursojetpackcompose.jetpackcomposecatalogomio.ui.theme.Dorado
 import com.cursojetpackcompose.jetpackcomposecatalogomio.ui.theme.TituloCard
 
@@ -51,72 +54,114 @@ fun ValorarAppScreen(
             TextoValorarAppCabecera(Alignment.CenterHorizontally)
             BodyValorarApp(context)
             Spacer(modifier = Modifier.height(16.dp))
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp)
-                    .background(Color.White, RoundedCornerShape(8.dp))
-                    .padding(16.dp)
-            ) {
-                Text(
-                    text = "¡Lo estás haciendo muy bien!",
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 22.sp,
-                    textAlign = TextAlign.Center
-                )
-            }
-            Spacer(modifier = Modifier.height(16.dp))
+            TextoMotivacion()
+            TextoAuxiliar()
+            Fotter(navigationController, context)
+
+        }
+    }
+}
+
+@Composable
+fun Fotter(navigationController: NavHostController, context: Context) {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
+    )
+    {
+        Button(
+            onClick = {
+                // Acción para redirigir a la valoración de la app
+                val intent = Intent(Intent.ACTION_VIEW)
+                intent.data =
+                    Uri.parse("https://play.google.com/store/apps/details?id=com.estudiartablas.tablasmultiplicar") // Reemplaza con tu app ID
+                context.startActivity(intent)
+            },
+            colors = ButtonDefaults.buttonColors(
+                containerColor = BotonVerde,
+                contentColor = Color.White
+            ),
+            shape = RoundedCornerShape(8.dp),
+            border = BorderStroke(2.dp, Color.White),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp)
+        ) {
             Text(
-                modifier = Modifier.padding(horizontal = 16.dp),
-                text = "Tu opinión ayudará a otros usuarios a mejorar su experiencia con el juego.",
-                fontWeight = FontWeight.Normal,
-                fontSize = 18.sp,
+                text = stringResource(id = R.string.Boton_valorar),
+                fontWeight = FontWeight.Bold,
+                fontSize = 22.sp,
                 textAlign = TextAlign.Center
             )
-            Spacer(modifier = Modifier.height(16.dp))
-            Button(
-                onClick = {
-                    // Acción para redirigir a la valoración de la app
-                    val intent = Intent(Intent.ACTION_VIEW)
-                    intent.data =
-                        Uri.parse("market://details?id=com.example.app") // Reemplaza con tu app ID
-                    context.startActivity(intent)
-                },
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = Color.Green,
-                    contentColor = Color.White
-                ),
-                shape = RoundedCornerShape(8.dp),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp)
-            ) {
-                Text(
-                    text = "Valorar la app",
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 18.sp,
-                    textAlign = TextAlign.Center
-                )
-            }
-            Button(
-                onClick = { navigationController.navigate(Routes.PantallaPrueba.route) },
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = Color.Red,
-                    contentColor = Color.White
-                ),
-                shape = RoundedCornerShape(8.dp),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp)
-            ) {
-                Text(
-                    text = "Quizá más tarde",
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 18.sp,
-                    textAlign = TextAlign.Center
-                )
-            }
         }
+        Button(
+            onClick = { navigationController.navigate(Routes.PantallaPrueba.route) },
+            colors = ButtonDefaults.buttonColors(
+                containerColor = Color.Red,
+                contentColor = Color.White
+            ),
+            shape = RoundedCornerShape(8.dp),
+            border = BorderStroke(2.dp, Color.White),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp)
+        ) {
+            Text(
+                text = stringResource(id = R.string.Boton_rechazar),
+                fontWeight = FontWeight.Bold,
+                fontSize = 22.sp,
+                textAlign = TextAlign.Center
+            )
+        }
+    }
+}
+
+@Composable
+fun TextoAuxiliar() {
+    Text(
+        modifier = Modifier.padding(horizontal = 16.dp),
+        text = "Tu opinión ayudará a otros usuarios a mejorar su experiencia con el juego.",
+        fontWeight = FontWeight.Normal,
+        fontSize = 22.sp,
+        textAlign = TextAlign.Center,
+        color = Color.White
+    )
+}
+
+@Composable
+fun TextoMotivacion() {
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(16.dp)
+            .background(Color.LightGray.copy(alpha = 0.4f), RoundedCornerShape(8.dp))
+            .border(2.dp, Color.White, RoundedCornerShape(8.dp))
+            .padding(16.dp)
+    ) {
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.Center
+        ) {
+
+            Text(
+                text = stringResource(id = R.string.Valorar_motivacion),
+                fontWeight = FontWeight.Bold,
+                fontSize = 18.sp,
+                textAlign = TextAlign.Center,
+                color = Color.White,
+                modifier = Modifier.weight(1f)
+            )
+            Icon(
+                imageVector = Icons.Filled.EmojiEvents, // Icono de corona
+                contentDescription = "Corona",
+                tint = Dorado, // Color dorado
+                modifier = Modifier.size(42.dp)
+            )
+        }
+
     }
 }
 
@@ -190,7 +235,7 @@ fun BodyValorarApp(context: Context) {
                         Icon(
                             painter = painterResource(id = android.R.drawable.star_on),
                             contentDescription = "Estrella",
-                            tint = if(it<2)Color(0xFFFFD700) else Color.Gray,
+                            tint = if (it < 2) Color(0xFFFFD700) else Color.Gray,
                         )
                     }
                 }
@@ -236,7 +281,8 @@ fun TextoValorarAppCabecera(center: Alignment.Horizontal) {
 
 fun enviarCorreo(context: Context, destinatario: String, asunto: String, mensaje: String) {
     val intent = Intent(Intent.ACTION_SENDTO).apply {
-        data = Uri.parse("mailto:") // Solo las aplicaciones de correo electrónico deberían manejar esto
+        data =
+            Uri.parse("mailto:") // Solo las aplicaciones de correo electrónico deberían manejar esto
         putExtra(Intent.EXTRA_EMAIL, arrayOf(destinatario))
         putExtra(Intent.EXTRA_SUBJECT, asunto)
         putExtra(Intent.EXTRA_TEXT, mensaje)
@@ -251,6 +297,11 @@ fun enviarCorreo(context: Context, destinatario: String, asunto: String, mensaje
             putExtra(Intent.EXTRA_SUBJECT, asunto)
             putExtra(Intent.EXTRA_TEXT, mensaje)
         }
-        context.startActivity(Intent.createChooser(fallbackIntent, "Elige una aplicación de correo"))
+        context.startActivity(
+            Intent.createChooser(
+                fallbackIntent,
+                "Elige una aplicación de correo"
+            )
+        )
     }
 }
