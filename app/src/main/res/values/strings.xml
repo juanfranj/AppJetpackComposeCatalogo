@@ -8,10 +8,31 @@
     <string name="repasarSeleccion_name">Repasar Tablas </string>
     <string name="selecionar_respuesta">Selecciona la Respuesta Correcta</string>
     <string name="terminarSeleccion_boton">Finalizar</string>
-    <string name="repasarSeleccion_dialogo_terminar">Enhorabuena Has Finalizado</string>
+
     <string name="repasarSeleccion_dialogo_aciertos">Has Acertado </string>
     <string name="repasarSeleccion_dialogo_errores">Has Fallado </string>
     <string name="repasarSeleccion_aciertos">¡¡ HAS ACERTADO !! </string>
     <string name="repasarSeleccion_errores">¡¡ HAS FALLADO !! </string>
+
+
+    //Incluir nuevo
+
+    //Modificado de repasarSeleccion
+    <string name="repasarSeleccion_dialogo_terminar">Has Terminado</string>
+    //Dialogo de repasarSeleccion
+    <string name="Nota_suspenso">Debes Mejorar</string>
+    <string name="Nota_aprobado">Aprobado</string>
+    <string name="Nota_notable">EnhoraBuena</string>
+    <string name="Nota_sobresaliente">Perfecto</string>
+    <string name="Boton_repetir">Repetir</string>
+    <string name="Boton_menu">Menu</string>
+    <string name="Boton_valorar">Valorar App</string>
+
+    //Valorar App
+    <string name="Valorar_titulo">Tu Opinión es Muy Importante</string>
+    <string name="Valorar_positivo">Tu opinión es muy importante para nosotros, deseamos que te hayas divertido y disfrutado, si crees que merecemos una buena valoración no lo dudes, Gracias!!</string>
+    <string name="Valorar_negativo">Tu opinión es muy importante para nosotros, si no te ha convencido nuestro juego, no lo dudes. Pulsa en el texto y envianos tu opinión. Gracias!!</string>
+
+
 
 </resources>

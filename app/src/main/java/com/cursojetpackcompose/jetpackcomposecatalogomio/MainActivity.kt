@@ -53,6 +53,8 @@ import com.cursojetpackcompose.jetpackcomposecatalogomio.progressBar.ui.Progress
 import com.cursojetpackcompose.jetpackcomposecatalogomio.pruebas.dialogoTablasMultiplicar.ui.DialogoTablasScreen
 import com.cursojetpackcompose.jetpackcomposecatalogomio.pruebas.dialogoTablasMultiplicar.ui.DialogoTablasViewModel
 import com.cursojetpackcompose.jetpackcomposecatalogomio.pruebas.ui.PantallasPruebasScreen
+import com.cursojetpackcompose.jetpackcomposecatalogomio.pruebas.valorarApp.ui.ValorarAppScreen
+import com.cursojetpackcompose.jetpackcomposecatalogomio.pruebas.valorarApp.ui.ValorarAppViewModel
 import com.cursojetpackcompose.jetpackcomposecatalogomio.ui.theme.JetpackComposeCatalogoMioTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -73,6 +75,7 @@ class MainActivity : ComponentActivity() {
     private val dragDropViewModel: DragDropViewModel by viewModels()
     private val movimientoPruebaViewModel: MovimientoPruebaViewModel by viewModels()
     private val dialogoTablasViewModel: DialogoTablasViewModel by viewModels()
+    private val valorarAppViewModel: ValorarAppViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -187,12 +190,20 @@ class MainActivity : ComponentActivity() {
                         }
                         //Pantalla Interstitial
                         composable(route = Routes.Interstitial.route) {
-                            MyInterstitialAd(this@MainActivity, navigationController, InterstitialViewModel)
+                            MyInterstitialAd(
+                                this@MainActivity,
+                                navigationController,
+                                InterstitialViewModel
+                            )
 
                         }
                         //Pantalla RewardedAD
                         composable(route = Routes.Rewarded.route) {
-                            MyRewardedAd(activity =this@MainActivity , navigationController = navigationController, RewardedViewModel)
+                            MyRewardedAd(
+                                activity = this@MainActivity,
+                                navigationController = navigationController,
+                                RewardedViewModel
+                            )
                         }
                         //Pantalla FireBase
                         composable(route = Routes.FireBase.route) {
@@ -200,7 +211,10 @@ class MainActivity : ComponentActivity() {
                         }
                         //Pantalla FireBaseAnalytics
                         composable(route = Routes.FireBaseAnalytics.route) {
-                            FireBaseAnalyticsScreen(navigationController, firebaseAnalyticsViewModel)
+                            FireBaseAnalyticsScreen(
+                                navigationController,
+                                firebaseAnalyticsViewModel
+                            )
                         }
                         //Pantalla movimiento Boton
                         composable(route = Routes.MovimientoBoton.route) {
@@ -222,6 +236,11 @@ class MainActivity : ComponentActivity() {
                         composable(route = Routes.DialogoAppMultiplicar.route) {
                             DialogoTablasScreen(navigationController, dialogoTablasViewModel)
                         }
+                        //Pantalla ValorarApp
+                        composable(route = Routes.ValorarApp.route) {
+                            ValorarAppScreen(navigationController, valorarAppViewModel)
+                        }
+
                     }
                 }
             }

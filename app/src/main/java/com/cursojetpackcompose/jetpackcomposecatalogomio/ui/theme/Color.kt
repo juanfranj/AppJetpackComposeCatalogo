@@ -18,6 +18,7 @@ val TituloCard = Color(0xFF34D6B8)
 val disabledBoton = Color(0xFF89E68D)
 val cardPresentation2 = Color(0xFFB6FAC0)
 val cardPresentation = Color(0xFF6EE0A9)
+val Dorado = Color(0xFFFFD700)
 
 //val cardPresentation = Color(0xFFF0EFB0)
 val BotonSeleccionar = Color(0xFF88B0FF)

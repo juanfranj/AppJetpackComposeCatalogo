@@ -34,5 +34,6 @@ sealed class Routes(val route: String) {
     object MovimientoPrueba: Routes("movimientoPrueba")
     object PantallaPrueba: Routes("pantallaPrueba")
     object DialogoAppMultiplicar: Routes("diaoloAppMultiplicar")
+    object ValorarApp: Routes("valorarApp")
 
 }

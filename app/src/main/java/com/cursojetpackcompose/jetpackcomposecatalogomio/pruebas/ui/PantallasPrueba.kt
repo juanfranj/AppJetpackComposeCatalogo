@@ -45,6 +45,20 @@ fun PantallasPruebasScreen(navigationController: NavController) {
                     fontSize = MaterialTheme.typography.titleLarge.fontSize
                 )
             }
+            Button(
+                onClick = { navigationController.navigate(Routes.ValorarApp.route) },
+                modifier = Modifier.width(300.dp),
+                shape = MaterialTheme.shapes.medium,
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color.Blue,
+                    contentColor = MaterialTheme.colorScheme.onPrimary
+                )
+            ) {
+                Text(
+                    text = "Valorar App",
+                    fontSize = MaterialTheme.typography.titleLarge.fontSize
+                )
+            }
             Spacer(modifier = Modifier.weight(1f))
             Button(
                 onClick = { navigationController.navigate(Routes.Home.route) },
