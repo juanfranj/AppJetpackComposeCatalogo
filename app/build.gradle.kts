@@ -104,12 +104,19 @@ dependencies {
     //To implement AdMob
     implementation ("com.google.android.gms:play-services-ads:23.1.0")
 
+
+    //Probar
+    implementation("androidx.activity:activity-ktx:1.9.0")
+
     //To use Firebase
     implementation(platform("com.google.firebase:firebase-bom:32.3.1"))
+//    implementation(platform("com.google.firebase:firebase-bom:33.1.1")) // Da error al compilar
     //To use Firebase Analytics
     implementation("com.google.firebase:firebase-analytics-ktx")
     //To use Firebase Crashlytics
     implementation("com.google.firebase:firebase-crashlytics-ktx")
+    //To use Firebase Remote Config
+    implementation("com.google.firebase:firebase-config-ktx")
 
 
     testImplementation("junit:junit:4.13.2")

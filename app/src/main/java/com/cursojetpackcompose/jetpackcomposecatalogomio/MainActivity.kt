@@ -39,6 +39,8 @@ import com.cursojetpackcompose.jetpackcomposecatalogomio.navigation.Screen6
 import com.cursojetpackcompose.jetpackcomposecatalogomio.components.ui.Components
 import com.cursojetpackcompose.jetpackcomposecatalogomio.firebase.analytics.ui.FireBaseAnalyticsScreen
 import com.cursojetpackcompose.jetpackcomposecatalogomio.firebase.analytics.ui.FireBaseAnalyticsViewModel
+import com.cursojetpackcompose.jetpackcomposecatalogomio.firebase.remoteconfig.ui.RemoteConfigScreen
+import com.cursojetpackcompose.jetpackcomposecatalogomio.firebase.remoteconfig.ui.RemoteConfigViewModel
 import com.cursojetpackcompose.jetpackcomposecatalogomio.firebase.ui.FireBaseScreen
 import com.cursojetpackcompose.jetpackcomposecatalogomio.firebase.ui.FireBaseViewModel
 import com.cursojetpackcompose.jetpackcomposecatalogomio.flow.ui.FlowScreen
@@ -76,6 +78,7 @@ class MainActivity : ComponentActivity() {
     private val movimientoPruebaViewModel: MovimientoPruebaViewModel by viewModels()
     private val dialogoTablasViewModel: DialogoTablasViewModel by viewModels()
     private val valorarAppViewModel: ValorarAppViewModel by viewModels()
+    private val remoteConfigViewModel: RemoteConfigViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -239,6 +242,10 @@ class MainActivity : ComponentActivity() {
                         //Pantalla ValorarApp
                         composable(route = Routes.ValorarApp.route) {
                             ValorarAppScreen(navigationController, valorarAppViewModel)
+                        }
+                        //Pantalla RemoteConfig
+                        composable(route = Routes.RemoteConfig.route) {
+                            RemoteConfigScreen(navigationController, remoteConfigViewModel)
                         }
 
                     }

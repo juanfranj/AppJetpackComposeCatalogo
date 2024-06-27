@@ -48,6 +48,15 @@ fun FireBaseScreen(navigationController: NavHostController, firebaseViewModel: F
         ) {
             Text(text = "Notifications", fontSize = MaterialTheme.typography.titleLarge.fontSize)
         }
+        Button(
+            onClick = { navigationController.navigate(Routes.RemoteConfig.route) },
+            modifier = Modifier
+                .width(300.dp)
+                .padding(8.dp),
+            shape = MaterialTheme.shapes.medium
+        ) {
+            Text(text = "RemoteConfig", fontSize = MaterialTheme.typography.titleLarge.fontSize)
+        }
         Spacer(modifier = Modifier.weight(1f))
         Button(
             onClick = { navigationController.navigate(Routes.Home.route)},

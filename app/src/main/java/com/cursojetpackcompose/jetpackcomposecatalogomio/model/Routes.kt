@@ -35,5 +35,6 @@ sealed class Routes(val route: String) {
     object PantallaPrueba: Routes("pantallaPrueba")
     object DialogoAppMultiplicar: Routes("diaoloAppMultiplicar")
     object ValorarApp: Routes("valorarApp")
+    object RemoteConfig: Routes("remoteConfig")
 
 }
