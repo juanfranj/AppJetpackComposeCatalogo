@@ -7,23 +7,23 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.cursojetpackcompose.jetpackcomposecatalogomio.firebase.remoteconfig.data.AppInfoText
 import com.cursojetpackcompose.jetpackcomposecatalogomio.firebase.remoteconfig.data.Repository
+import com.cursojetpackcompose.jetpackcomposecatalogomio.firebase.remoteconfig.domain.CanAccessToApp
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
-class RemoteConfigViewModel @Inject constructor(val repository: Repository) : ViewModel() {
-
-    private val _texto = MutableLiveData("Esperando RemoteConfig")
-    val texto: LiveData<String> = _texto
-
-    private val _showText = MutableLiveData(false)
-    val showText: LiveData<Boolean> = _showText
+class RemoteConfigViewModel @Inject constructor(val repository: Repository, private val canAccessToApp: CanAccessToApp) : ViewModel() {
 
     private val _appInfoText = MutableLiveData<AppInfoText>()
     val appInfoText: LiveData<AppInfoText> = _appInfoText
+
+    private val _showBlockDialog = MutableStateFlow<Boolean?>(null)
+    val showBlockDialog: StateFlow<Boolean?> = _showBlockDialog
 
     fun initApp() {
         viewModelScope.launch(Dispatchers.IO) {
@@ -34,8 +34,18 @@ class RemoteConfigViewModel @Inject constructor(val repository: Repository) : Vi
             withContext(Dispatchers.Main) {
                 _appInfoText.value = response
             }
-            Log.i("juanfran", "initApp: ${response}")
+//            Log.i("juanfran", "initApp: ${response}")
+        }
+        viewModelScope.launch {
+           val canAccess = withContext(Dispatchers.IO) {
+               canAccessToApp()
+           }
+            Log.i("juanfran", "initApp: $canAccess")
+            _showBlockDialog.value = !canAccess
         }
 
+    }
+    fun closeDialog() {
+        _showBlockDialog.value = !_showBlockDialog.value!!
     }
 }

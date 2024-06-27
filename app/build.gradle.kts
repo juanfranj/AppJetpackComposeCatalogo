@@ -20,7 +20,7 @@ android {
         minSdk = 24
         targetSdk = 34
         versionCode = 1
-        versionName = "1.0"
+        versionName = "1.0.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -62,6 +62,9 @@ android {
 
 dependencies {
     val nav_version = "2.7.7"
+//Button Sheet
+    implementation ("androidx.compose.material3:material3:1.0.0")
+    implementation ("androidx.compose.material:material:1.3.0")
 
 
     implementation("androidx.core:core-ktx:1.9.0")
