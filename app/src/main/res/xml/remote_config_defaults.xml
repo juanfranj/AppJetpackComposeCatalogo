@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <defaults>
   <entry>
-    <key>showText</key>
+    <key>min_version</key>
+    <value>1.0.0</value>
+  </entry>
+  <entry>
+    <key>act_critica</key>
     <value>false</value>
+  </entry>
+  <entry>
+    <key>showText</key>
+    <value>true</value>
   </entry>
   <entry>
     <key>title</key>

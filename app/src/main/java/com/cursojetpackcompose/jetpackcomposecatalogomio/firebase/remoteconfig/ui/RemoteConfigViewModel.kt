@@ -40,7 +40,7 @@ class RemoteConfigViewModel @Inject constructor(val repository: Repository, priv
            val canAccess = withContext(Dispatchers.IO) {
                canAccessToApp()
            }
-            Log.i("juanfran", "initApp: $canAccess")
+            Log.i("juanfran", "Pued iniciar la app: $canAccess")
             _showBlockDialog.value = !canAccess
         }
 
