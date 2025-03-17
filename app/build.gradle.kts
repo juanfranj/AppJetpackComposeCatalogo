@@ -1,6 +1,3 @@
-import org.jetbrains.kotlin.kapt3.base.Kapt.kapt
-
-
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -51,7 +48,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.4.3"
+        kotlinCompilerExtensionVersion = "1.5.11"
     }
     packaging {
         resources {
@@ -62,9 +59,12 @@ android {
 
 dependencies {
     val nav_version = "2.7.7"
-//Button Sheet
-    implementation ("androidx.compose.material3:material3:1.0.0")
-    implementation ("androidx.compose.material:material:1.3.0")
+
+    //Button Sheet
+//    implementation ("androidx.compose.material3:material3:1.0.0")
+//    implementation ("androidx.compose.material:material:1.3.0")
+    implementation ("androidx.compose.material3:material3:1.2.1")
+    implementation ("androidx.compose.material:material:1.6.8")
 
 
     implementation("androidx.core:core-ktx:1.9.0")
@@ -98,8 +98,8 @@ dependencies {
     //implementation("com.squareup.okhttp3:logging-interceptor:4.11.0")
 
     //To use DaggerHilt
-    implementation("com.google.dagger:hilt-android:2.44")
-    kapt("com.google.dagger:hilt-android-compiler:2.44")
+    implementation("com.google.dagger:hilt-android:2.48.1")
+    kapt("com.google.dagger:hilt-android-compiler:2.48.1")
 
     //To use Flow
     //implementation("androix.lifecycle:lifecycle-viewmodel-ktx:2.6.2") implementamos el viewmodel pero usamos el del compose

@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -23,11 +24,13 @@ import androidx.compose.material.ModalBottomSheetValue
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.rememberModalBottomSheetState
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -36,9 +39,13 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -110,7 +117,10 @@ fun RemoteConfigScreen(
             }
 
         }
-
+//        BottomSlideDialog(
+//            showDialog = showDialog ?: false,
+//            onDismiss = { remoteConfigViewModel.closeDialog() }
+//        )
 
     }
     BottomSheetDialog(
@@ -125,29 +135,46 @@ fun BottomSlideDialog(
     onDismiss: () -> Unit
 ) {
     if (showDialog) {
-        Dialog(onDismissRequest = onDismiss) {
-            AnimatedVisibility(
-                visible = showDialog,
-                enter = slideInVertically(
-                    initialOffsetY = { fullHeight -> fullHeight },
-                    animationSpec = tween(durationMillis = 300)
-                ),
-                exit = slideOutVertically(
-                    targetOffsetY = { fullHeight -> fullHeight },
-                    animationSpec = tween(durationMillis = 300)
-                )
-            ) {
-                Surface(
+        AlertDialog(
+            onDismissRequest = onDismiss,
+            title = {
+                Text(text = "Nueva actualización disponible")
+            },
+            text = {
+                Text("Existe una actualización disponible. ¿Deseas actualizar ahora?")
+            },
+            confirmButton = {
+                Button(
+                    onClick = {
+//                        onUpdateClick()
+                        onDismiss()
+                    },
                     shape = MaterialTheme.shapes.medium,
-                    color = MaterialTheme.colorScheme.surface,
-                    modifier = Modifier.fillMaxWidth()
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = Color.Blue,
+                        contentColor = Color.White
+                    )
                 ) {
-                    Text(text = "Hola soy un Dialog")
+                    Text("Actualizar")
                 }
+            },
+            dismissButton = {
+                Button(
+                    onClick = onDismiss,
+                    shape = MaterialTheme.shapes.medium,
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = Color.Gray,
+                        contentColor = Color.White
+                    )
+                ) {
+                    Text("Cerrar")
+                }
+
             }
-        }
+        )
     }
 }
+
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterialApi::class)
 @Composable
@@ -177,20 +204,29 @@ fun BottomSheetDialog(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center
             ) {
-                Icon(
-                    imageVector = Icons.Default.Info,
-                    contentDescription = null,
-//                    modifier = Modifier.size(48.dp),
-                    tint = Color.Blue
+                Box(
+                    modifier = Modifier
+                        .width(40.dp)
+                        .height(4.dp)
+                        .clip(RoundedCornerShape(2.dp))
+                        .background(Color.Gray)
                 )
                 Spacer(modifier = Modifier.height(16.dp))
                 Text(
                     text = "Este es un Bottom Sheet",
                     fontSize = 20.sp,
-                    color = Color.Black
+                    color = Color.Blue
                 )
                 Spacer(modifier = Modifier.height(16.dp))
-                Button(onClick = { onDismiss() }) {
+                Button(
+                    onClick = { onDismiss() },
+                    modifier = Modifier.fillMaxWidth().padding(16.dp),
+                    shape = MaterialTheme.shapes.medium,
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = Color.Blue,
+                        contentColor = Color.White
+                    )
+                ) {
                     Text("Cerrar")
                 }
             }
