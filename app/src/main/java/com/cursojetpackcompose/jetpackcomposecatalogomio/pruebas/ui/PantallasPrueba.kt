@@ -46,6 +46,20 @@ fun PantallasPruebasScreen(navigationController: NavController) {
                 )
             }
             Button(
+                onClick = { navigationController.navigate(Routes.PantallaPrincipal.route) },
+                modifier = Modifier.width(300.dp),
+                shape = MaterialTheme.shapes.medium,
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color.Blue,
+                    contentColor = MaterialTheme.colorScheme.onPrimary
+                )
+            ) {
+                Text(
+                    text = "Pantalla Principal",
+                    fontSize = MaterialTheme.typography.titleLarge.fontSize
+                )
+            }
+            Button(
                 onClick = { navigationController.navigate(Routes.ValorarApp.route) },
                 modifier = Modifier.width(300.dp),
                 shape = MaterialTheme.shapes.medium,
@@ -74,6 +88,7 @@ fun PantallasPruebasScreen(navigationController: NavController) {
                     fontSize = MaterialTheme.typography.titleLarge.fontSize
                 )
             }
+
         }
 
     }

@@ -1,5 +1,11 @@
 package com.cursojetpackcompose.jetpackcomposecatalogomio.model
 
+/**
+ * Sealed class representing the different routes within the application.
+ * Each object within this class defines a specific screen or destination.
+ *
+ * @property route The string representation of the route, used for navigation.
+ */
 sealed class Routes(val route: String) {
     object Home : Routes("home")
     object Components : Routes("componente")
@@ -36,5 +42,6 @@ sealed class Routes(val route: String) {
     object DialogoAppMultiplicar: Routes("diaoloAppMultiplicar")
     object ValorarApp: Routes("valorarApp")
     object RemoteConfig: Routes("remoteConfig")
+    object PantallaPrincipal: Routes("pantallaPrincipal")
 
 }

@@ -54,6 +54,8 @@ import com.cursojetpackcompose.jetpackcomposecatalogomio.progressBar.ui.MyProgre
 import com.cursojetpackcompose.jetpackcomposecatalogomio.progressBar.ui.ProgressBarViewmodel
 import com.cursojetpackcompose.jetpackcomposecatalogomio.pruebas.dialogoTablasMultiplicar.ui.DialogoTablasScreen
 import com.cursojetpackcompose.jetpackcomposecatalogomio.pruebas.dialogoTablasMultiplicar.ui.DialogoTablasViewModel
+import com.cursojetpackcompose.jetpackcomposecatalogomio.pruebas.pantallaPrincipal.ui.PantallaPrincipalScreen
+import com.cursojetpackcompose.jetpackcomposecatalogomio.pruebas.pantallaPrincipal.ui.PantallaPrincipalViewModel
 import com.cursojetpackcompose.jetpackcomposecatalogomio.pruebas.ui.PantallasPruebasScreen
 import com.cursojetpackcompose.jetpackcomposecatalogomio.pruebas.valorarApp.ui.ValorarAppScreen
 import com.cursojetpackcompose.jetpackcomposecatalogomio.pruebas.valorarApp.ui.ValorarAppViewModel
@@ -79,6 +81,7 @@ class MainActivity : ComponentActivity() {
     private val dialogoTablasViewModel: DialogoTablasViewModel by viewModels()
     private val valorarAppViewModel: ValorarAppViewModel by viewModels()
     private val remoteConfigViewModel: RemoteConfigViewModel by viewModels()
+    private val pantallaPrincipalViewModel: PantallaPrincipalViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -246,6 +249,10 @@ class MainActivity : ComponentActivity() {
                         //Pantalla RemoteConfig
                         composable(route = Routes.RemoteConfig.route) {
                             RemoteConfigScreen(navigationController, remoteConfigViewModel)
+                        }
+                        //Pantalla Principal
+                        composable(route = Routes.PantallaPrincipal.route) {
+                            PantallaPrincipalScreen(navigationController, pantallaPrincipalViewModel)
                         }
 
                     }
