@@ -13,6 +13,13 @@ class PantallaPrincipalViewModel @Inject constructor(
     // Aquí puedes inyectar tus repositorios u otras dependencias
 ) : ViewModel() {
 
+    var gemas by mutableStateOf(123)
+        private set
+
+    fun incrementarGemas(cantidad: Int) {
+        gemas += cantidad
+    }
+
     // Aquí puedes agregar lógica de estado, funciones de negocio, etc.
     // Lista observable de tarjetas usando pares: nombre + nombreImagen
     private val _tarjetas = mutableStateListOf(

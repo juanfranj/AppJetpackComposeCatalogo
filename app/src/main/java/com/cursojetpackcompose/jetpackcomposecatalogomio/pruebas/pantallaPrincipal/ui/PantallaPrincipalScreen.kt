@@ -21,6 +21,7 @@ import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
 import androidx.compose.material.Card
+import androidx.compose.material.Divider
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
@@ -46,42 +47,63 @@ fun PantallaPrincipalScreen(
 ) {
 //    val tarjetas:List<String> = listOf("Estudiar", "Jugar", "Clasificacion", "Tienda", "Scroll Uno", "Scroll Dos")
     val tarjetas = pantallaPrincipalViewModel.tarjetas
+    val gemas = pantallaPrincipalViewModel.gemas
 
-    Scaffold (topBar = {
+    Scaffold(topBar = {
         TopAppBar(
-            backgroundColor = Color(0xFFF5D1AD),//Color(0xFFFFCC00),
+            backgroundColor = Color(0xFFFFFBF4),//Color(0xFFFFCC00),
             contentColor = Color.White,
-            elevation = 4.dp
+            elevation = 0.dp
         ) {
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 16.dp),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceBetween
-            ) {
-                // Gema recogida (izquierda)
-                Image(
-                    painter = painterResource(id = R.drawable.icon_gema_azul),
-                    contentDescription = "Gemas acumuladas",
-                    modifier = Modifier
-                        .size(56.dp)
-                        .clickable { /* Acción al hacer click en gema */ }
-                )
+            Column(Modifier.fillMaxWidth()) {
 
-                // Icono personalizado (derecha)
-                Image(
-                    painter = painterResource(id = R.drawable.icon_zorro),
-                    contentDescription = "Icono usuario",
+                Row(
                     modifier = Modifier
-                        .size(56.dp)
-                        .clickable { /* Acción al hacer click en icono */ }
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+
+                        // Gema recogida (izquierda)
+                        Image(
+                            painter = painterResource(id = R.drawable.icon_gema_azul),
+                            contentDescription = "Gemas acumuladas",
+                            modifier = Modifier
+                                .size(42.dp)
+                                .clickable { /* Acción al hacer click en gema */ }
+                        )
+                        Spacer(modifier = Modifier.width(4.dp))
+                        Text(
+                            text = gemas.toString(),
+                            fontWeight = FontWeight.ExtraBold,
+                            fontSize = 24.sp,
+                            color = Color(0xFF00AEEF), // color azul vibrante como en la imagen
+                            letterSpacing = (0.5).sp
+                        )
+                    }
+
+                    // Icono personalizado (derecha)
+                    Image(
+                        painter = painterResource(id = R.drawable.icon_zorro),
+                        contentDescription = "Icono Zorro",
+                        modifier = Modifier
+                            .size(56.dp)
+                            .clickable { navigationController.navigateUp() }
+                    )
+                }
+                Divider(
+                    color = Color.Blue,
+                    thickness = 5.dp,
+                    modifier = Modifier.padding(top = 16.dp)
                 )
             }
         }
     }) { paddingValues ->
         Column(
             modifier = Modifier
+                .background(Color(0xFFFFFBF4))
                 .fillMaxSize()
                 .padding(paddingValues),
             verticalArrangement = Arrangement.SpaceBetween,
@@ -106,20 +128,11 @@ fun PantallaPrincipalScreen(
                     )
                 }
             }
-            Button(
-                onClick = { navigationController.navigateUp() },
-                modifier = Modifier
-                    .padding(16.dp)
-                    .fillMaxWidth(0.8f)
-            ) {
-                Text(text = "\uD83D\uDD19 Volver a pantalla de pruebas")
-            }
 
-            
+
         }
     }
 }
-
 
 
 @Composable
@@ -137,7 +150,7 @@ fun BodyCard(
     Box(
         modifier = modifier
             .fillMaxWidth(),
-            //.padding(8.dp),
+        //.padding(8.dp),
         contentAlignment = Alignment.Center
     ) {
         Card(
