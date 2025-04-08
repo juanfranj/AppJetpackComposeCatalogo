@@ -49,7 +49,7 @@ fun PantallaPrincipalScreen(
 
     Scaffold (topBar = {
         TopAppBar(
-            backgroundColor = Color(0xFF81D4FA),
+            backgroundColor = Color(0xFFF5D1AD),//Color(0xFFFFCC00),
             contentColor = Color.White,
             elevation = 4.dp
         ) {
@@ -62,19 +62,19 @@ fun PantallaPrincipalScreen(
             ) {
                 // Gema recogida (izquierda)
                 Image(
-                    painter = painterResource(id = R.drawable.fb),
+                    painter = painterResource(id = R.drawable.icon_gema_azul),
                     contentDescription = "Gemas acumuladas",
                     modifier = Modifier
-                        .size(32.dp)
+                        .size(56.dp)
                         .clickable { /* Acción al hacer click en gema */ }
                 )
 
                 // Icono personalizado (derecha)
                 Image(
-                    painter = painterResource(id = R.drawable.zorropresentacion),
+                    painter = painterResource(id = R.drawable.icon_zorro),
                     contentDescription = "Icono usuario",
                     modifier = Modifier
-                        .size(48.dp)
+                        .size(56.dp)
                         .clickable { /* Acción al hacer click en icono */ }
                 )
             }
@@ -115,33 +115,7 @@ fun PantallaPrincipalScreen(
                 Text(text = "\uD83D\uDD19 Volver a pantalla de pruebas")
             }
 
-            // Fila 2: imagen fija + botón
-//            Column(
-//                modifier = Modifier
-//                    .weight(.35f)
-//                    .wrapContentHeight()
-//                    .padding(bottom = 16.dp),
-//                horizontalAlignment = Alignment.CenterHorizontally
-//            ) {
-//                Image(
-//                    painter = painterResource(id = R.drawable.zorropresentacion),
-//                    contentDescription = "Imagen de multiplicación",
-//                    modifier = Modifier
-//                        .fillMaxWidth(0.8f)
-//                        .height(180.dp)
-//                )
-
-                //Spacer(modifier = Modifier.height(24.dp))
-
-//                Button(
-//                    onClick = { navigationController.navigateUp() },
-//                    modifier = Modifier
-//                        .padding(16.dp)
-//                        .fillMaxWidth(0.8f)
-//                ) {
-//                    Text(text = "\uD83D\uDD19 Volver a pantalla de pruebas")
-//                }
-//            }
+            
         }
     }
 }
