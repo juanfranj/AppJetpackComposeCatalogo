@@ -19,9 +19,12 @@ import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.BottomAppBar
 import androidx.compose.material.Button
 import androidx.compose.material.Card
 import androidx.compose.material.Divider
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
@@ -48,59 +51,93 @@ fun PantallaPrincipalScreen(
 //    val tarjetas:List<String> = listOf("Estudiar", "Jugar", "Clasificacion", "Tienda", "Scroll Uno", "Scroll Dos")
     val tarjetas = pantallaPrincipalViewModel.tarjetas
     val gemas = pantallaPrincipalViewModel.gemas
+    val iconos = pantallaPrincipalViewModel.iconos
 
-    Scaffold(topBar = {
-        TopAppBar(
-            backgroundColor = Color(0xFFFFFBF4),//Color(0xFFFFCC00),
-            contentColor = Color.White,
-            elevation = 0.dp
-        ) {
-            Column(Modifier.fillMaxWidth()) {
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                backgroundColor = Color(0xFFFFFBF4),//Color(0xFFFFCC00),
+                contentColor = Color.White,
+                elevation = 0.dp
+            ) {
+                Column(Modifier.fillMaxWidth()) {
 
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 16.dp),
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.SpaceBetween
-                ) {
-                    Row(verticalAlignment = Alignment.CenterVertically) {
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 16.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        Row(verticalAlignment = Alignment.CenterVertically) {
 
-                        // Gema recogida (izquierda)
+                            // Gema recogida (izquierda)
+                            Image(
+                                painter = painterResource(id = R.drawable.icon_gema_azul),
+                                contentDescription = "Gemas acumuladas",
+                                modifier = Modifier
+                                    .size(42.dp)
+//                                    .clickable { /* Acción al hacer click en gema */ }
+                            )
+                            Spacer(modifier = Modifier.width(4.dp))
+                            Text(
+                                text = gemas.toString(),
+                                fontWeight = FontWeight.ExtraBold,
+                                fontSize = 24.sp,
+                                color = Color(0xFF00AEEF), // color azul vibrante como en la imagen
+                                letterSpacing = (0.5).sp
+                            )
+                        }
+
+                        // Icono personalizado (derecha)
                         Image(
-                            painter = painterResource(id = R.drawable.icon_gema_azul),
-                            contentDescription = "Gemas acumuladas",
+                            painter = painterResource(id = R.drawable.icon_zorro),
+                            contentDescription = "Icono Zorro",
                             modifier = Modifier
-                                .size(42.dp)
-                                .clickable { /* Acción al hacer click en gema */ }
-                        )
-                        Spacer(modifier = Modifier.width(4.dp))
-                        Text(
-                            text = gemas.toString(),
-                            fontWeight = FontWeight.ExtraBold,
-                            fontSize = 24.sp,
-                            color = Color(0xFF00AEEF), // color azul vibrante como en la imagen
-                            letterSpacing = (0.5).sp
+                                .size(56.dp)
+                                .clickable { navigationController.navigateUp() }
                         )
                     }
 
-                    // Icono personalizado (derecha)
-                    Image(
-                        painter = painterResource(id = R.drawable.icon_zorro),
-                        contentDescription = "Icono Zorro",
-                        modifier = Modifier
-                            .size(56.dp)
-                            .clickable { navigationController.navigateUp() }
-                    )
                 }
-                Divider(
-                    color = Color.Blue,
-                    thickness = 5.dp,
-                    modifier = Modifier.padding(top = 16.dp)
-                )
             }
-        }
-    }) { paddingValues ->
+        },
+        bottomBar = {
+            BottomAppBar(
+                backgroundColor = Color(0xFFFFFBF4),
+                contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp),
+                elevation = 0.dp
+            ) {
+                Column(modifier = Modifier.fillMaxWidth()) {
+                    Divider(
+                        color = Color(0xFFCCCCCC),
+                        thickness = 3.dp
+                    )
+                    Spacer(modifier = Modifier.height(4.dp))
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceEvenly,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        iconos.forEach { iconName ->
+                            val context = LocalContext.current
+                            val iconResId = remember(iconName) {
+                                context.resources.getIdentifier(iconName, "drawable", context.packageName)
+                            }
+                            if (iconResId != 0) {
+                                Image(
+                                    painter = painterResource(id = iconResId),
+                                    contentDescription = iconName,
+                                    modifier = Modifier
+                                        .size(56.dp)
+                                        .clickable { /* Acción por definir */ }
+                                )
+                            }
+                        }
+                    }
+                }
+            }
+        }) { paddingValues ->
         Column(
             modifier = Modifier
                 .background(Color(0xFFFFFBF4))
@@ -159,7 +196,7 @@ fun BodyCard(
                 //.height(200.dp)
                 .clickable { },
             shape = RoundedCornerShape(24.dp),
-            contentColor = Color.White,
+            contentColor = Color(0xFFFFFBF4),
         ) {
             Box(
                 modifier = Modifier.fillMaxSize()

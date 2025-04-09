@@ -12,6 +12,8 @@ import javax.inject.Inject
 class PantallaPrincipalViewModel @Inject constructor(
     // Aquí puedes inyectar tus repositorios u otras dependencias
 ) : ViewModel() {
+    private val _iconos = mutableStateListOf("icon_libro", "icon_gema_azul", "icon_zorro", "icon_gema_azul")
+    val iconos: List<String> get() = _iconos
 
     var gemas by mutableStateOf(123)
         private set
