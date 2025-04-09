@@ -1,10 +1,13 @@
 package com.cursojetpackcompose.jetpackcomposecatalogomio.pruebas.pantallaPrincipal.ui
 
+import android.annotation.SuppressLint
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -105,8 +108,10 @@ fun PantallaPrincipalScreen(
         bottomBar = {
             BottomAppBar(
                 backgroundColor = Color(0xFFFFFBF4),
-                contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp),
-                elevation = 0.dp
+//                contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp),
+//                elevation = 0.dp,
+                contentPadding = PaddingValues(0.dp),
+                elevation = 8.dp
             ) {
                 Column(modifier = Modifier.fillMaxWidth()) {
                     Divider(
@@ -122,7 +127,11 @@ fun PantallaPrincipalScreen(
                         iconos.forEach { iconName ->
                             val context = LocalContext.current
                             val iconResId = remember(iconName) {
-                                context.resources.getIdentifier(iconName, "drawable", context.packageName)
+                                context.resources.getIdentifier(
+                                    iconName,
+                                    "drawable",
+                                    context.packageName
+                                )
                             }
                             if (iconResId != 0) {
                                 Image(
@@ -189,23 +198,27 @@ fun BodyCard(
             .fillMaxWidth(),
         //.padding(8.dp),
         contentAlignment = Alignment.Center
-    ) {
+    )
+    {
         Card(
             modifier = Modifier
-                .width(300.dp)
-                //.height(200.dp)
+                .width(256.dp)
+                .height(384.dp)
                 .clickable { },
             shape = RoundedCornerShape(24.dp),
-            contentColor = Color(0xFFFFFBF4),
+            border = BorderStroke(1.dp, Color(0xFFCCCCCC)),
+            //contentColor = Color(0xFFFFFBF4),
         ) {
             Box(
-                modifier = Modifier.fillMaxSize()
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(Color(0xFFFFFBF4))
             ) {
                 if (imagenId != 0) {
                     Image(
                         painter = painterResource(id = imagenId),
                         contentDescription = nombre,
-                        contentScale = ContentScale.Crop,
+                        contentScale = ContentScale.Fit,
                         modifier = Modifier.fillMaxSize()
                     )
                 }
@@ -213,7 +226,4 @@ fun BodyCard(
         }
     }
 }
-
-
-
 

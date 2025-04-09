@@ -2,6 +2,7 @@
 <resources>
 
     <style name="Theme.JetpackComposeCatalogoMio" parent="android:Theme.Material.Light.NoActionBar" >
-        <item name="android:windowFullscreen">true</item>
+        <!--<item name="android:windowFullscreen">true</item>-->
+        <item name="android:statusBarColor">#FFFBF4</item>
     </style>
 </resources>

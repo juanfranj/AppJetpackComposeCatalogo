@@ -7,7 +7,13 @@ import androidx.activity.viewModels
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
+import android.graphics.Color
+import android.os.Build
+import android.view.View
+import android.view.WindowInsetsController
+import androidx.annotation.RequiresApi
 import androidx.compose.ui.Modifier
+import androidx.core.view.WindowCompat
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -61,6 +67,7 @@ import com.cursojetpackcompose.jetpackcomposecatalogomio.pruebas.valorarApp.ui.V
 import com.cursojetpackcompose.jetpackcomposecatalogomio.pruebas.valorarApp.ui.ValorarAppViewModel
 import com.cursojetpackcompose.jetpackcomposecatalogomio.ui.theme.JetpackComposeCatalogoMioTheme
 import dagger.hilt.android.AndroidEntryPoint
+import androidx.core.graphics.toColorInt
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -83,8 +90,18 @@ class MainActivity : ComponentActivity() {
     private val remoteConfigViewModel: RemoteConfigViewModel by viewModels()
     private val pantallaPrincipalViewModel: PantallaPrincipalViewModel by viewModels()
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // Permite que la UI respete los insets del sistema (status bar, nav bar)
+        WindowCompat.setDecorFitsSystemWindows(window, true)
+
+        // Colores de la status bar (superior) y navigation bar (inferior del sistema)
+        window.statusBarColor = "#FFFBF4".toColorInt()
+        window.navigationBarColor = "#FFFBF4".toColorInt()
+
+
+
         setContent {
 //            flowViewModel.example()
             JetpackComposeCatalogoMioTheme {
